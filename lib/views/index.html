@@ -220,11 +220,12 @@
           <section id="meta-http-headers">
             <h3><a href="#meta-http-headers">HTTP Headers</a></h3>
             <p>
+            <p>
               Crafatar always replies with a <code>200 OK</code> status code when the requested user's skin/cape was found. This is also used in some rare cases when Mojang servers are having issues and the image couldn't be checked for changes, but Crafatar still had a cached version.
               <code>502 Bad Gateway</code> and <code>500 Server Error</code> are used when no skin/cape was found because of Mojang or Crafatar server issues.
             </p>
             <p>
-              Note that requests are usually answered with an image (with Steve/Alex skin), even if an error occured!
+              Note that requests are usually answered with an image (with Steve/Alex skin), even if an error occurred!
             </p>
             <p>
               Responses come with some HTTP headers that are useful for debugging.
@@ -232,7 +233,7 @@
 
             <ul>
               <li>
-                <b>Warning</b>: When using a cached image after an error occured. One of:
+                <b>Warning</b>: When using a cached image after an error occurred. One of:
                 <ul>
                   <li><code>110 Crafatar "Response is Stale"</code></li>
                   <li><code>111 Crafatar "Revalidation Failed"</code></li>
