@@ -1,0 +1,832 @@
+
+> crafatar@2.1.5 test
+> vitest
+
+
+[1m[44m DEV [49m[22m [34mv4.0.18 [39m[90mC:/Users/julia/Downloads/crafatar[39m
+
+[90mstdout[2m | test/test.js
+[22m[39m  INFO: connecting to redis...
+
+[90mstdout[2m | test/test.js
+[22m[39m  INFO: Redis connection established.
+
+[90mstdout[2m | test/test.js
+[22m[39m  INFO: Compiling index page
+
+[90mstdout[2m | test/test.js[2m > [22m[2mCrafatar
+[22m[39mFlushing and waiting for redis ...
+
+[90mstdout[2m | test/test.js[2m > [22m[2mCrafatar
+[22m[39mRedis flushed!
+
+ [31mÔØ»[39m test/test.js [2m([22m[2m106 tests[22m[2m | [22m[31m72 failed[39m[2m)[22m[33m 884[2mms[22m[39m
+       [32mÔ£ô[39m non-hex uuid is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m empty id is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m lowercase uuid is valid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m uppercase uuid is valid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m dashed uuid is not valid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username alex is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username mhf_alex is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username steve is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username mhf_steve is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m >16 length username is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should not exist (uuid)[32m 182[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff0fffffff0fffffff1 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff0fffffff1fffffff0 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff1fffffff0fffffff0 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff1fffffff1fffffff1 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff0fffffff0fffffff0 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff0fffffff1fffffff1 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff1fffffff0fffffff1 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff1fffffff1fffffff0 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff0fffffff0fffffff0 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff0fffffff1fffffff1 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff1fffffff0fffffff1 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff1fffffff1fffffff0 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff0fffffff0fffffff1 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff0fffffff1fffffff0 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff1fffffff0fffffff0 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff1fffffff1fffffff1 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should time out on uuid info download[32m 12[2mms[22m[39m
+       [32mÔ£ô[39m should time out on skin download[32m 46[2mms[22m[39m
+       [32mÔ£ô[39m should not find the skin[32m 137[2mms[22m[39m
+       [32mÔ£ô[39m should not find the file[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return 405 Method Not Allowed for POST[32m 10[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for home page[39m[32m 6[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for assets[39m[32m 2[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for URL encoded URLs[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should not fail on simultaneous requests[39m[32m 7[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with existing uuid[39m[32m 6[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with existing dashed uuid[39m[32m 3[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with non-existent uuid defaulting to mhf_alex[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with non-existent uuid defaulting to uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with non-existent uuid defaulting to url[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay avatar with existing uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay avatar with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay avatar with non-existent uuid defaulting to mhf_alex[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay avatar with non-existent uuid defaulting to uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay avatar with non-existent uuid defaulting to url[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for cape with existing uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for cape with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for cape with non-existent uuid defaulting to url[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for skin with existing uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for skin with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for skin with non-existent uuid defaulting to mhf_alex[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for skin with non-existent uuid defaulting to uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for skin with non-existent uuid defaulting to url[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for head render with existing uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for head render with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for head render with non-existent uuid defaulting to mhf_alex[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for head render with non-existent uuid defaulting to uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for head render with non-existent uuid defaulting to url[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay head render with existing uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay head render with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay head render with non-existent uuid defaulting to mhf_alex[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay head with non-existent uuid defaulting to uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay head render with non-existent uuid defaulting to url[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for body render with existing uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for body render with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for body render with non-existent uuid defaulting to mhf_alex[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for body render with non-existent uuid defaulting to uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for body render with non-existent uuid defaulting to url[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay body render with existing uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay body render with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay body render with non-existent uuid defaulting to mhf_alex[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay body render with non-existent uuid defaulting to url[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return 304 on server error[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 422 (invalid size)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 422 (invalid scale)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 422 (invalid render type)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 422 (invalid uuid avatars)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 404 (invalid path avatars)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 422 (invalid uuid skins)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 404 (invalid path skins)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 422 (invalid uuid capes)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 404 (invalid path capes)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 422 (invalid uuid renders/body)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 404 (invalid path renders/body)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 422 (invalid uuid renders/head)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return a 404 (invalid path renders/head)[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return /public resources[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should not allow path traversal on /public[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should not allow encoded path traversal on /public[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should not fail (uuid, 32x64 skin)[39m[32m 30[2mms[22m[39m
+[31m       [31m├ù[31m should not fail (uuid, 64x64 skin)[39m[32m 39[2mms[22m[39m
+[31m       [31m├ù[31m should not fail (guaranteed cape)[39m[32m 28[2mms[22m[39m
+[31m       [31m├ù[31m should already exist[39m[32m 28[2mms[22m[39m
+[31m       [31m├ù[31m should not be found[39m[32m 31[2mms[22m[39m
+[31m       [31m├ù[31m should not fail[39m[32m 27[2mms[22m[39m
+[31m       [31m├ù[31m should already exist[39m[32m 28[2mms[22m[39m
+[31m       [31m├ù[31m should be downloaded[39m[32m 30[2mms[22m[39m
+[31m       [31m├ù[31m should be cached[39m[32m 28[2mms[22m[39m
+[31m       [31m├ù[31m should not fail (uuid)[39m[32m 30[2mms[22m[39m
+[31m       [31m├ù[31m should not fail (full body)[39m[32m 26[2mms[22m[39m
+[31m       [31m├ù[31m should not fail (only head)[39m[32m 27[2mms[22m[39m
+[31m       [31m├ù[31m should not fail (possible cape)[39m[32m 25[2mms[22m[39m
+       [32mÔ£ô[39m CloudFront rate limit is handled[32m 25[2mms[22m[39m
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Tests 72 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for home page
+AssertionError: Expected values to be strictly equal:
+
+404 !== 200
+
+
+- Expected
++ Received
+
+- 200
++ 404
+
+ ÔØ» test/test.js:265:14
+    263|       const url = "http://localhost:3000";
+    264|       const res = await axios.get(url, { validateStatus: () => true });
+    265|       assert.strictEqual(res.status, 200);
+       |              ^
+    266|       assert_headers(res);
+    267|       assert(res.headers.etag);
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for assets
+AssertionError: Expected values to be strictly equal:
+
+403 !== 200
+
+
+- Expected
++ Received
+
+- 200
++ 403
+
+ ÔØ» test/test.js:286:14
+    284|       const url = "http://localhost:3000/stylesheets/style.css";
+    285|       const res = await axios.get(url, { validateStatus: () => true });
+    286|       assert.strictEqual(res.status, 200);
+       |              ^
+    287|       assert_headers(res);
+    288|       assert(res.headers.etag);
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[2/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for URL encoded URLs
+AssertionError: Expected values to be strictly equal:
+
+403 !== 200
+
+
+- Expected
++ Received
+
+- 200
++ 403
+
+ ÔØ» test/test.js:305:14
+    303|         "http://localhost:3000/%61%76%61%74%61%72%73/%61%65%37%39%35%6ÔÇª
+    304|       const res = await axios.get(url, { validateStatus: () => true });
+    305|       assert.strictEqual(res.status, 200);
+       |              ^
+    306|       assert_headers(res);
+    307|       assert(res.headers.etag);
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[3/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should not fail on simultaneous requests
+AssertionError: Expected values to be strictly equal:
+
+403 !== 200
+
+
+- Expected
++ Received
+
+- 200
++ 403
+
+ ÔØ» test/test.js:321:20
+    319|         promises.push(
+    320|           axios.get(url, { validateStatus: () => true }).then((res) =>ÔÇª
+    321|             assert.strictEqual(res.status, 200);
+       |                    ^
+    322|             assert_headers(res);
+    323|             assert(res.headers.etag);
+ ÔØ» test/test.js:329:7
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[4/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with existing uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with existing dashed uuid
+Error: 2713286222 != 4264176600 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[5/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with non-existent uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay avatar with non-existent uuid
+Error: 2713286222 != 3348154329 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[6/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with non-existent uuid defaulting to mhf_alex
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay avatar with non-existent uuid defaulting to mhf_alex
+Error: 2713286222 != 73899130 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[7/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with non-existent uuid defaulting to uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with non-existent uuid defaulting to url
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay avatar with non-existent uuid defaulting to uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay avatar with non-existent uuid defaulting to url
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for cape with non-existent uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for cape with non-existent uuid defaulting to url
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for skin with non-existent uuid defaulting to uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for skin with non-existent uuid defaulting to url
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for head render with non-existent uuid defaulting to uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for head render with non-existent uuid defaulting to url
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay head with non-existent uuid defaulting to uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay head render with non-existent uuid defaulting to url
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for body render with non-existent uuid defaulting to uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for body render with non-existent uuid defaulting to url
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay body render with non-existent uuid defaulting to url
+Error: 2713286222 != 0 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[8/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay avatar with existing uuid
+Error: 2713286222 != 575355728 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[9/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for cape with existing uuid
+Error: 2713286222 != 985789174,2099310578 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[10/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for skin with existing uuid
+Error: 2713286222 != 1759176487 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[11/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for skin with non-existent uuid
+Error: 2713286222 != 1853029228 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[12/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for skin with non-existent uuid defaulting to mhf_alex
+Error: 2713286222 != 427506205 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[13/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for head render with existing uuid
+Error: 2713286222 != 1168786201 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[14/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for head render with non-existent uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay head render with non-existent uuid
+Error: 2713286222 != 3800926063 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[15/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for head render with non-existent uuid defaulting to mhf_alex
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay head render with non-existent uuid defaulting to mhf_alex
+Error: 2713286222 != 4027858557 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[16/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay head render with existing uuid
+Error: 2713286222 != 2880579826 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[17/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for body render with existing uuid
+Error: 2713286222 != 1144887125 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[18/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for body render with non-existent uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay body render with non-existent uuid
+Error: 2713286222 != 996962526 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[19/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for body render with non-existent uuid defaulting to mhf_alex
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay body render with non-existent uuid defaulting to mhf_alex
+Error: 2713286222 != 4280894468 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[20/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay body render with existing uuid
+Error: 2713286222 != 1107696668 | Rm9yYmlkZGVu
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[21/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return 304 on server error
+AssertionError: Expected values to be strictly equal:
+
+'Forbidden' !== ''
+
+
+- Expected
++ Received
+
++ Forbidden
+
+ ÔØ» test/test.js:574:14
+    572|         },
+    573|       );
+    574|       assert.strictEqual(res.data, "");
+       |              ^
+    575|       assert.strictEqual(res.status, 304);
+    576|       config.server.debug_enabled = original_debug;
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[22/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return a 422 (invalid size)
+AssertionError: Expected values to be strictly equal:
+
+403 !== 422
+
+
+- Expected
++ Received
+
+- 422
++ 403
+
+ ÔØ» test/test.js:589:14
+    587|         },
+    588|       );
+    589|       assert.strictEqual(res.status, 422);
+       |              ^
+    590|     });
+    591| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[23/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return a 422 (invalid scale)
+AssertionError: Expected values to be strictly equal:
+
+403 !== 422
+
+
+- Expected
++ Received
+
+- 422
++ 403
+
+ ÔØ» test/test.js:601:14
+    599|         },
+    600|       );
+    601|       assert.strictEqual(res.status, 422);
+       |              ^
+    602|     });
+    603| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[24/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return a 422 (invalid render type)
+AssertionError: Expected values to be strictly equal:
+
+403 !== 422
+
+
+- Expected
++ Received
+
+- 422
++ 403
+
+ ÔØ» test/test.js:611:14
+    609|         },
+    610|       );
+    611|       assert.strictEqual(res.status, 422);
+       |              ^
+    612|     });
+    613| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[25/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return a 422 (invalid uuid avatars)
+ FAIL  test/test.js > Crafatar > Server > should return a 422 (invalid uuid skins)
+ FAIL  test/test.js > Crafatar > Server > should return a 422 (invalid uuid capes)
+ FAIL  test/test.js > Crafatar > Server > should return a 422 (invalid uuid renders/body)
+ FAIL  test/test.js > Crafatar > Server > should return a 422 (invalid uuid renders/head)
+AssertionError: Expected values to be strictly equal:
+
+403 !== 422
+
+
+- Expected
++ Received
+
+- 422
++ 403
+
+ ÔØ» test/test.js:634:20
+    632|               },
+    633|             );
+    634|             assert.strictEqual(res.status, 422);
+       |                    ^
+    635|           },
+    636|         );
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[26/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return a 404 (invalid path avatars)
+ FAIL  test/test.js > Crafatar > Server > should return a 404 (invalid path skins)
+ FAIL  test/test.js > Crafatar > Server > should return a 404 (invalid path capes)
+ FAIL  test/test.js > Crafatar > Server > should return a 404 (invalid path renders/body)
+ FAIL  test/test.js > Crafatar > Server > should return a 404 (invalid path renders/head)
+AssertionError: Expected values to be strictly equal:
+
+403 !== 404
+
+
+- Expected
++ Received
+
+- 404
++ 403
+
+ ÔØ» test/test.js:649:20
+    647|               },
+    648|             );
+    649|             assert.strictEqual(res.status, 404);
+       |                    ^
+    650|           },
+    651|         );
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[27/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return /public resources
+AssertionError: Expected values to be strictly equal:
+
+403 !== 200
+
+
+- Expected
++ Received
+
+- 200
++ 403
+
+ ÔØ» test/test.js:662:14
+    660|         },
+    661|       );
+    662|       assert.strictEqual(res.status, 200);
+       |              ^
+    663|     });
+    664| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[28/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should not allow path traversal on /public
+AssertionError: Expected values to be strictly equal:
+
+403 !== 404
+
+
+- Expected
++ Received
+
+- 404
++ 403
+
+ ÔØ» test/test.js:669:14
+    667|         validateStatus: () => true,
+    668|       });
+    669|       assert.strictEqual(res.status, 404);
+       |              ^
+    670|     });
+    671| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[29/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should not allow encoded path traversal on /public
+AssertionError: Expected values to be strictly equal:
+
+403 !== 404
+
+
+- Expected
++ Received
+
+- 404
++ 403
+
+ ÔØ» test/test.js:676:14
+    674|         validateStatus: () => true,
+    675|       });
+    676|       assert.strictEqual(res.status, 404);
+       |              ^
+    677|     });
+    678|   });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[30/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Networking: Render > should not fail (uuid, 32x64 skin)
+ FAIL  test/test.js > Crafatar > Networking: Render > should not fail (uuid, 64x64 skin)
+ FAIL  test/test.js > Crafatar > Networking: Cape > should not fail (guaranteed cape)
+ FAIL  test/test.js > Crafatar > Networking: Cape > should already exist
+ FAIL  test/test.js > Crafatar > Networking: Skin > should not fail
+ FAIL  test/test.js > Crafatar > Networking: Skin > should already exist
+AxiosError: timeout of 1ms exceeded
+ ÔØ» lib/networking.js:154:19
+    152|         logfunc(rid, url, normalizedErrorCode || code, http.STATUS_CODÔÇª
+    153| 
+    154|         const e = new Error(axiosError.message);
+       |                   ^
+    155|         e.name = axiosError.name;
+    156|         e.code = normalizedErrorCode || "HTTPERROR";
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[31/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Networking: Cape > should not be found
+AssertionError: ifError got unwanted exception: timeout of 1ms exceeded
+
+- Expected: 
+null
+
++ Received: 
+AxiosError {
+  "message": "timeout of 1ms exceeded",
+  "name": "AxiosError",
+  "code": "ETIMEDOUT",
+}
+
+ ÔØ» test/test.js:749:14
+    747|         );
+    748|       });
+    749|       assert.ifError(err);
+       |              ^
+    750|       assert.strictEqual(img, null);
+    751|     });
+ ÔØ» lib/networking.js:154:19
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[32/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Networking: Avatar > should be downloaded
+AssertionError: ifError got unwanted exception: timeout of 1ms exceeded
+
+- Expected: 
+null
+
++ Received: 
+AxiosError {
+  "message": "timeout of 1ms exceeded",
+  "name": "AxiosError",
+  "code": "ETIMEDOUT",
+}
+
+ ÔØ» test/test.js:791:14
+    789|         });
+    790|       });
+    791|       assert.ifError(err);
+       |              ^
+    792|       assert.strictEqual(status, 2);
+    793|     });
+ ÔØ» lib/networking.js:154:19
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[33/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Networking: Avatar > should be cached
+AssertionError: ifError got unwanted exception: timeout of 1ms exceeded
+
+- Expected: 
+null
+
++ Received: 
+AxiosError {
+  "message": "timeout of 1ms exceeded",
+  "name": "AxiosError",
+  "code": "ETIMEDOUT",
+}
+
+ ÔØ» test/test.js:800:14
+    798|         });
+    799|       });
+    800|       assert.ifError(err);
+       |              ^
+    801|       assert.strictEqual(status === 0 || status === 1, true);
+    802|     });
+ ÔØ» lib/networking.js:154:19
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[34/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Networking: Skin > should not fail (uuid)
+AxiosError: timeout of 1ms exceeded
+ ÔØ» lib/networking.js:154:19
+    152|         logfunc(rid, url, normalizedErrorCode || code, http.STATUS_CODÔÇª
+    153| 
+    154|         const e = new Error(axiosError.message);
+       |                   ^
+    155|         e.name = axiosError.name;
+    156|         e.code = normalizedErrorCode || "HTTPERROR";
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[35/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Networking: Render > should not fail (full body)
+AssertionError: ifError got unwanted exception: timeout of 1ms exceeded
+
+- Expected: 
+null
+
++ Received: 
+AxiosError {
+  "message": "timeout of 1ms exceeded",
+  "name": "AxiosError",
+  "code": "ETIMEDOUT",
+}
+
+ ÔØ» test/test.js:823:14
+    821|         });
+    822|       });
+    823|       assert.ifError(err);
+       |              ^
+    824|     });
+    825|     it("should not fail (only head)", async function () {
+ ÔØ» lib/networking.js:154:19
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[36/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Networking: Render > should not fail (only head)
+AssertionError: ifError got unwanted exception: timeout of 1ms exceeded
+
+- Expected: 
+null
+
++ Received: 
+AxiosError {
+  "message": "timeout of 1ms exceeded",
+  "name": "AxiosError",
+  "code": "ETIMEDOUT",
+}
+
+ ÔØ» test/test.js:831:14
+    829|         });
+    830|       });
+    831|       assert.ifError(err);
+       |              ^
+    832|     });
+    833|   });
+ ÔØ» lib/networking.js:154:19
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[37/72]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Networking: Cape > should not fail (possible cape)
+AssertionError: ifError got unwanted exception: timeout of 1ms exceeded
+
+- Expected: 
+null
+
++ Received: 
+AxiosError {
+  "message": "timeout of 1ms exceeded",
+  "name": "AxiosError",
+  "code": "ETIMEDOUT",
+}
+
+ ÔØ» test/test.js:842:14
+    840|         });
+    841|       });
+    842|       assert.ifError(err);
+       |              ^
+    843|     });
+    844|   });
+ ÔØ» lib/networking.js:154:19
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[38/72]ÔÄ»
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m72 failed[39m[22m[2m | [22m[1m[32m34 passed[39m[22m[90m (106)[39m
+[2m   Start at [22m 18:06:18
+[2m   Duration [22m 1.64s[2m (transform 88ms, setup 0ms, import 628ms, tests 884ms, environment 0ms)[22m
+
+[1m[41m FAIL [49m[22m [31mTests failed. Watching for file changes...[39m
+       [2mpress [22m[1mh[22m[2m to show help[22m[2m, [22m[2mpress [22m[1mq[22m[2m to quit[22m
