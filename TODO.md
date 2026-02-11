@@ -35,10 +35,10 @@
 - [ ] Add JSDoc comments for better documentation
 
 ### Backend Framework Options
-- [ ] **Option 1: Express with TSX**
+- [ ] **Option 1: Express with TypeScript**
   - Keep Express.js but migrate to TypeScript
   - Add proper middleware typing
-  - Implement TSX for server-side rendering if needed
+  - Use a template engine if server-side rendering is needed
 - [ ] **Option 2: Fastify**
   - Higher performance than Express
   - Built-in TypeScript support
