@@ -6,7 +6,7 @@
 <a href="https://crafatar.com">Crafatar</a> serves Minecraft avatars based on the skin for use in external applications.
 Inspired by <a href="https://gravatar.com">Gravatar</a> (hence the name) and <a href="https://minotar.net">Minotar</a>.
 
-Image manipulation is done by [lwip](https://github.com/EyalAr/lwip). 3D renders are created with [node-canvas](https://github.com/Automattic/node-canvas) / [cairo](http://cairographics.org/).
+Image manipulation is done by [sharp](https://github.com/lovell/sharp). 3D renders are created with [node-canvas](https://github.com/Automattic/node-canvas) / [cairo](http://cairographics.org/).
 
 # Contributions welcome!
 
@@ -44,10 +44,10 @@ docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_
 
 ## Manual
 
-- Install [nodejs](https://nodejs.org/) 12 (LTS)
+- Install [nodejs](https://nodejs.org/) 24 or higher
 - Install `redis-server`
 - Run `npm install`  
-  If that fails, it's likely because because of `node-canvas` dependencies. Follow [this guide](https://github.com/Automattic/node-canvas/wiki#installation-guides) to install them.
+  If that fails, it's likely because of `node-canvas` dependencies. Follow [this guide](https://github.com/Automattic/node-canvas/wiki#installation-guides) to install them.
 - Run `npm start`
 
 Crafatar is now available at http://0.0.0.0:3000.
