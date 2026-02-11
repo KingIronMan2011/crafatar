@@ -1,0 +1,276 @@
+
+> crafatar@2.1.5 test
+> vitest
+
+
+[1m[44m DEV [49m[22m [34mv4.0.18 [39m[90mC:/Users/julia/Downloads/crafatar[39m
+
+[90mstdout[2m | test/test.js
+[22m[39m  INFO: connecting to redis...
+
+[90mstdout[2m | test/test.js
+[22m[39m  INFO: Redis connection established.
+
+[90mstdout[2m | test/test.js
+[22m[39m  INFO: Compiling index page
+
+[90mstdout[2m | test/test.js[2m > [22m[2mCrafatar
+[22m[39mFlushing and waiting for redis ...
+
+[90mstdout[2m | test/test.js[2m > [22m[2mCrafatar
+[22m[39mRedis flushed!
+
+ [31mÔØ»[39m test/test.js [2m([22m[2m106 tests[22m[2m | [22m[31m15 failed[39m[2m)[22m[33m 2651[2mms[22m[39m
+       [32mÔ£ô[39m non-hex uuid is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m empty id is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m lowercase uuid is valid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m uppercase uuid is valid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m dashed uuid is not valid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username alex is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username mhf_alex is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username steve is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m username mhf_steve is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m >16 length username is invalid[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should not exist (uuid)[32m 179[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff0fffffff0fffffff1 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff0fffffff1fffffff0 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff1fffffff0fffffff0 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff1fffffff1fffffff1 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff0fffffff0fffffff0 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff0fffffff1fffffff1 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff1fffffff0fffffff1 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff1fffffff1fffffff0 should default to MHF_Alex[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff0fffffff0fffffff0 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff0fffffff1fffffff1 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff1fffffff0fffffff1 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff0fffffff1fffffff1fffffff0 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff0fffffff0fffffff1 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff0fffffff1fffffff0 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff1fffffff0fffffff0 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m UUID fffffff1fffffff1fffffff1fffffff1 should default to MHF_Steve[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should time out on uuid info download[32m 15[2mms[22m[39m
+       [32mÔ£ô[39m should time out on skin download[32m 45[2mms[22m[39m
+       [32mÔ£ô[39m should not find the skin[32m 123[2mms[22m[39m
+       [32mÔ£ô[39m should not find the file[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return 405 Method Not Allowed for POST[32m 9[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for home page[32m 3[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for assets[32m 3[2mms[22m[39m
+       [33m[2mÔ£ô[22m[39m should return correct HTTP response for URL encoded URLs [33m 395[2mms[22m[39m
+       [32mÔ£ô[39m should not fail on simultaneous requests[32m 253[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with existing uuid[39m[32m 235[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with existing dashed uuid[39m[32m 4[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with non-existent uuid[39m[32m 113[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for avatar with non-existent uuid defaulting to mhf_alex[39m[32m 4[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for avatar with non-existent uuid defaulting to uuid[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for avatar with non-existent uuid defaulting to url[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay avatar with existing uuid[39m[32m 3[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay avatar with non-existent uuid[39m[32m 2[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay avatar with non-existent uuid defaulting to mhf_alex[39m[32m 2[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay avatar with non-existent uuid defaulting to uuid[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay avatar with non-existent uuid defaulting to url[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for cape with existing uuid[39m[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for cape with non-existent uuid[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for cape with non-existent uuid defaulting to url[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for skin with existing uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for skin with non-existent uuid[39m[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for skin with non-existent uuid defaulting to mhf_alex[39m[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for skin with non-existent uuid defaulting to uuid[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for skin with non-existent uuid defaulting to url[32m 1[2mms[22m[39m
+       [33m[2mÔ£ô[22m[39m should return correct HTTP response for head render with existing uuid [33m 306[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for head render with non-existent uuid[32m 4[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for head render with non-existent uuid defaulting to mhf_alex[32m 3[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for head render with non-existent uuid defaulting to uuid[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for head render with non-existent uuid defaulting to url[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay head render with existing uuid[32m 9[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay head render with non-existent uuid[32m 4[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay head render with non-existent uuid defaulting to mhf_alex[32m 3[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay head with non-existent uuid defaulting to uuid[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay head render with non-existent uuid defaulting to url[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for body render with existing uuid[39m[32m 3[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for body render with non-existent uuid[32m 4[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for body render with non-existent uuid defaulting to mhf_alex[39m[32m 3[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for body render with non-existent uuid defaulting to uuid[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for body render with non-existent uuid defaulting to url[32m 1[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay body render with existing uuid[39m[32m 3[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay body render with non-existent uuid[32m 4[2mms[22m[39m
+[31m       [31m├ù[31m should return correct HTTP response for overlay body render with non-existent uuid defaulting to mhf_alex[39m[32m 2[2mms[22m[39m
+       [32mÔ£ô[39m should return correct HTTP response for overlay body render with non-existent uuid defaulting to url[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return 304 on server error[32m 21[2mms[22m[39m
+       [32mÔ£ô[39m should return a 422 (invalid size)[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should return a 422 (invalid scale)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 422 (invalid render type)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 422 (invalid uuid avatars)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 404 (invalid path avatars)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 422 (invalid uuid skins)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 404 (invalid path skins)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 422 (invalid uuid capes)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 404 (invalid path capes)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 422 (invalid uuid renders/body)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 404 (invalid path renders/body)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 422 (invalid uuid renders/head)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return a 404 (invalid path renders/head)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should return /public resources[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should not allow path traversal on /public[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should not allow encoded path traversal on /public[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should not fail (uuid, 32x64 skin)[32m 193[2mms[22m[39m
+       [32mÔ£ô[39m should not fail (uuid, 64x64 skin)[32m 238[2mms[22m[39m
+       [32mÔ£ô[39m should not fail (guaranteed cape)[32m 143[2mms[22m[39m
+       [32mÔ£ô[39m should already exist[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should not be found[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should not fail[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should already exist[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m should be downloaded[32m 246[2mms[22m[39m
+       [32mÔ£ô[39m should be cached[32m 2[2mms[22m[39m
+       [32mÔ£ô[39m should not fail (uuid)[32m 1[2mms[22m[39m
+       [32mÔ£ô[39m should not fail (full body)[32m 3[2mms[22m[39m
+       [32mÔ£ô[39m should not fail (only head)[32m 3[2mms[22m[39m
+       [32mÔ£ô[39m should not fail (possible cape)[32m 0[2mms[22m[39m
+       [32mÔ£ô[39m CloudFront rate limit is handled[32m 13[2mms[22m[39m
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Tests 15 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with existing uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with existing dashed uuid
+Error: 2681217746 != 4264176600 | iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAuUlEQVR4nKWSMQuDMBCFHZ3c/b8i1P/gHgQX0SDiICF64FCqxl2nzi2hSClY8EAyNLSxx1vy7j5I3sViPGU87XrW9awo46KMeUN5Q2vIa8jRIVFIorBiScUSyxiQ4Enw1kvwVXKbPAr0gu9CR+dbB4HnVq5ju46tXgCdx1b/AavmiUvrL63/U0pa4HU+7brdrx+1KJg5gMsfRhhGwLYaKzrTLKZZYLjmAB7wY2FbXRY6GSUZJThpDLwBSvZRj5HkbMIAAAAASUVORK5CYII=
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with non-existent uuid
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay avatar with non-existent uuid
+Error: 1063194604 != 3348154329 | iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA80lEQVR4nGPQl+fTl+fTluXVluWFsDVkuDVkuFUlOeFIGywLQQwka9BG4kCQsYqgsYqgg5YwHGmDxSEGkathW2fOts6cvX3Fe/uKj01rODatYU9X0Z6uIojImrKoNWVREINI17CqNm1VbdrW5vytzfkQ9tqG3LUNuXOKYuYUxUC0zcn0gSPSNWwFK/0PBkG2nUG2nVuqU7ZUp0CUQkT+gwHEONI1zEl2m5PsBlEE0ZzlYABH+zpy9nXkLMpyX5Tl3hhs3hhsTrqGCXEOE+IcpsWDULmTKVYEUUOuhjwXbTiCCEFQlZ9xlZ9xc6g1HEFESNYAABNBF3DTLZiCAAAAAElFTkSuQmCC
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[2/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for avatar with non-existent uuid defaulting to mhf_alex
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay avatar with non-existent uuid defaulting to mhf_alex
+Error: 2542893462 != 73899130 | iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVR4nGN4OtMdhHrtQQiZjSkyE8RmIF1DL3aJO5Nt7ky2gYrPRMiSoWEmdqWvL2+Go6cUabgDlkZGEEWfbu36dGvXk9Mr4QjqaZI1PAFzfoOBcpKKcpIKROmnu4c+3T0EEfkNBhCVpGt4d33Hu+s7oIqQlCKLvENSQ7oGTEXvd2+EI2RtkMAgWwMOx0BFkMRJ1gAAfykih2PvZy0AAAAASUVORK5CYII=
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[3/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay avatar with existing uuid
+Error: 673324947 != 575355728 | iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAq0lEQVR4nGNg8GT4D8IXLx0C41171oLxkWPbwPjo8R1gDBNfsWouGDO4MkAwA6UGfDne8h+E/1/oIgnD9DFQzYBLV46gYJg4IXkGqhnw69cvMJbk4wBjdKfCxL99+wbG1DfgP4HA+nGqDYxJjoUvhAz4c67zPzL++Ok5XoxuEAPFBuyCJtEnT++AMUwhejTCxGHqYNFJuQEPHl75D8LoToUpRDcYhmH6KDYAAO6CSUICym92AAAAAElFTkSuQmCC
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[4/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for cape with existing uuid
+Error: 1204821380 != 985789174,2099310578 | iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB0UlEQVR4nOWXPU7EMBCF5wyIgogCaRE1K3GA7fYC20bKATgBna9AtwdAiDNst0UOgSi2XilcgAKjF2WiieX8ge1ZtMVT7HgSz3wejxMyxtDT5bWdqufszu5u7r3C2OPFlcU7p2qbLSxrznOhRByYdMQntkOAUzQXgEbwhgG4we7fXuzh470W2hJCaACsscyLCqC8fegE7RNsYgLwZVsKCMQAOEhuu/3YACCeD+oDEQ3A59d3Oznabj8VgONy1ZELIwqA43LVBt0n2GgAcEEEB7DNFvUEqAFjAGCbGoCcPwYEYgBS9rULA30NADw3A2AfggIoe9KO9797LzUAeY0K4NBUfjf1efWr9SYJgKE6EA1Atd60EHz7H+NzAeDTOEQWYAF4EWLUAWIAkAQg0xBjtshnAcCzfwXgK8RRANgiHwSA+xoAeOVjFkKqJyjy3hoA4YiEDWxTA5AnktwGwQHsm38BXxHkLZAKwFghDAqgaoLjAGWb+2yDa2wAQ3VAQggGwAR6katQALgOyCP5LACUDYSzzAAz8mN0NgDKAQgnD2D3yy/BqRBOHoD5JyJtB7RF2g5oi7Qd0BZpO6At0nZAW6TtgLZI2wFtkbYD2iJtB7T1A7VOu8qo07VFAAAAAElFTkSuQmCC
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[5/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for skin with existing uuid
+Error: 3408578196 != 1759176487 | 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
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[6/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for skin with non-existent uuid
+Error: 1536293560 != 1853029228 | iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAe1BMVEVMaXEqHQ0AaGgAf38mGQmqfWaWX0FGOqUwKHIAr691Ry8AqKhqQDAAmZmHVTsvIA8/Pz9ra2smIVuWb1sAYGBWScwoKCgAzMw6MYmEUzUAW1udZkgjIyMAnp5RMSW+jHO0gm0fEAs9KRN3QjWQXkD///9SPYlSKCacclwzF/heAAAAAXRSTlMAQObYZgAAAnZJREFUeNrtlu2WmjAQhiVANIQEK20hpKys+9G9/yvcdzKbU5W2fP31OYszZJ2HjMaT7CJJkuEvey6+2C0lyaoKgqwoXencGkFVZSz4BcrlgqyiHqpktSChBqotglAfBb9XCKiHZxIQ62YAkmTx1xjKKhA+hITSoIrrYp4AdXRdLpxkIK6LGb2jnq7hDPIq3tO6mCWgx1MT+ZAPH2fvYQhDcV1MCwjrL8Pb+3B+f8sv3mYEr4tZAjzJSevzoSzP3lnpMMB9VHMEeHfpvSte5Qt4dYXzvsQgr4sZAue889IWBf0GLaL1BG4yULjdHH6AnyDeN0Wg+f5FHNdNo8un8mlaUAZGggZsFWjUl1taGAsOh9NhDxAotmmadqZ33rm+T0GvtVZKa85ViAr8EZyuBCAVItW6R71SyIVWAAKkqdKqx9i94HAjoDeioDeoFEAxOoiRTAo6ITr8vzd44dwobVjQq//NAEkLRNd1xlCZMR0I1biXUtocWCQUbwVtixmwADXCGC4TyFW40Syo81xaFvyzBSqiCeggEIKqSWJZUAdBXV8JwP23EAXIBVIW8NQh4FbGAhAFiqpwcc6gjgXyTnA8RsHx+A2kIk2NoQmwAHn4GCQJgATUypWAC2NEK6c90UJAi6xttTHtPghQaREnBJgRGwznSPAiAepqG2fw4MGDB2vOC3FTXS1owCaBjgeLLS3MEIzPCy1iCrTSPUUFFgg48q6sFaJYJkCMgng+WCUYnQsmGJ0XRueCSQFvZ1cC3tKiYHELJKhZYLGzLRFwK5YEvCvbeTMAtwLJAjtLMD4vSJCzAKLJFsbbfXhyvUWA3mtUIv5V8AkUpkjEVLFqFAAAAABJRU5ErkJggg==
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[7/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for skin with non-existent uuid defaulting to mhf_alex
+Error: 3024230625 != 427506205 | iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAjVBMVEVMaXHr07PonUx6tXdkQSxoRTCMvorlmUfljT96r3dISEjs1LiLuojy2rry3cIoKChNTU3kyqnckzyEhV/v2r87OzvYgDIZPBdbW1tiYmJ9snqqiV5RUVFsbGyCW0F5VTyce1BzTjaKjGZvTDTy38jfxqM/Pz9XV1fYupSBtX93r3VPgEzvu7H7+/sjYiQU85F8AAAAAXRSTlMAQObYZgAAAwZJREFUeNrtlm1zqjAQhZsgSTAvVyJYpVYvim3t2///efdsAjM4dAbK/eoZahLLeXY34GQfOkmp6FKbVg+/lSKAl3yzeYJmAKTnUnklN09/oacZGQAggZgPUBxVcH+ZC5CwYwv4bIBXikoAgDQDwGHmVEKryUb4JIeVSqAPGWY8DpKrUUC0xNs95h2Nx5TkKKC9XZKfMZiUUsHLMUwBUFjuvfTeM5vn2EgPOyFiHaMA+Cm0z7++rfv+yr2S7T4AjGscgJ1nzlptbfhkPlipDvobL4HqZ9Y52D8/rWWO+bj9Ku7MlDeQUQaUAHHI3z1KifQepmgB/YG6dbLeQFymrbrvsyx7Y2+TANBG8gEgmQ64XNY/AtgbmwRg1mInhiUMAaAmWXo8nNNFuhCiqhKsBQHoVQw/E3qsV4PomTAV3W6E6UfPsrQ+HuFPF+fDoU7oxhMAlp5iltHv5Ho1BtETUwn6tzGiD4D1fEjrOB7rEKk6MaYkJ9MVEgYApGYEDUhE3NaPKo83gHchTifJK9ycCEP2yqxPp/UaVxxuAZT6mcYUokgAVIJXSLsFCCFyiDHWDj1AWZaLlPYAkyWUIWoFF/kyyGBBK/JZSwhmme0B4Cm3ELlXr68rAggREVQOohssBfwBoHP62fUB0O75ebdsAQkkxDt5AMAcNFpopolQ6LwA5wZQRkAZAY/QBwDYh484D4sPDTHndKG1c/0MVqt9ud3ttuV+tVru98sEeT+2ypBCN9e6KJxrCNA4fQvYUgbbHsBQ2QZ7EOYibGNR6KJpXIGxucng5eUlAjBZghHe1bSGUhNhQUYTACXoCLjrrrvugmb0Czwe6/MBkv8vQIVjfT5AJb8AUJ+AQzYNYyXodJKqPeWEmhIdTpyVddcvwMglALEvmAio08O5O+5jX1C1fcGk+gFABR1g0BeMaNAvDPqCEQ36hUFfMKJBv0BxLQiahb5gTMN+AcaCESCfBBj2C21fEIdxwLBfoOPYORaHccCwXyjIib4ABNc0o/Zhv1AgeBNbmx8B/wAhsFK7zHknsgAAAABJRU5ErkJggg==
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[8/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for body render with existing uuid
+Error: 2745192436 != 1144887125 | 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
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[9/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for body render with non-existent uuid defaulting to mhf_alex
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay body render with non-existent uuid defaulting to mhf_alex
+Error: 1255106465 != 4280894468 | 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
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[10/15]ÔÄ»
+
+ FAIL  test/test.js > Crafatar > Server > should return correct HTTP response for overlay body render with existing uuid
+Error: 2441671793 != 1107696668 | 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
+ ÔØ» test/test.js:532:21
+    530|               assert(matches);
+    531|             } catch {
+    532|               throw new Error(
+       |                     ^
+    533|                 hash +
+    534|                   " != " +
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[11/15]ÔÄ»
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m15 failed[39m[22m[2m | [22m[1m[32m91 passed[39m[22m[90m (106)[39m
+[2m   Start at [22m 18:20:04
+[2m   Duration [22m 7.46s[2m (transform 101ms, setup 0ms, import 4.41s, tests 2.65s, environment 0ms)[22m
+
+[1m[41m FAIL [49m[22m [31mTests failed. Watching for file changes...[39m
+       [2mpress [22m[1mh[22m[2m to show help[22m[2m, [22m[2mpress [22m[1mq[22m[2m to quit[22m
