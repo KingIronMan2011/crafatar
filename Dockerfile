@@ -1,6 +1,6 @@
-FROM node:12-alpine AS builder
+FROM node:24-alpine AS builder
 
-RUN apk --no-cache add git python3 build-base redis cairo-dev pango-dev jpeg-dev giflib-dev
+RUN apk --no-cache add git python3 build-base redis cairo-dev pango-dev jpeg-dev giflib-dev pixman-dev
 
 RUN adduser -D app
 USER app
@@ -17,8 +17,8 @@ ARG DEBUG
 RUN nohup redis-server & npm test
 
 
-FROM node:12-alpine
-RUN apk --no-cache add cairo pango jpeg giflib
+FROM node:24-alpine
+RUN apk --no-cache add cairo pango jpeg giflib pixman
 RUN adduser -D app
 USER app
 RUN mkdir /home/app/crafatar
