@@ -168,7 +168,7 @@ describe("Crafatar", function () {
       networking.get_profile(
         rid(),
         "069a79f444e94726a5befca90e38aaf5",
-        function (err, profile) {
+        function (err) {
           assert.notStrictEqual(
             ["ETIMEDOUT", "ESOCKETTIMEDOUT"].indexOf(err.code),
             -1,
@@ -207,7 +207,7 @@ describe("Crafatar", function () {
       });
     });
     it("should not find the file", function (done) {
-      skins.open_skin(rid(), "non/existent/path", function (err, img) {
+      skins.open_skin(rid(), "non/existent/path", function (err) {
         assert(err);
         done();
       });
@@ -530,7 +530,7 @@ describe("Crafatar", function () {
             }
             try {
               assert(matches);
-            } catch (e) {
+            } catch {
               throw new Error(
                 hash +
                   " != " +
@@ -622,7 +622,7 @@ describe("Crafatar", function () {
       "renders/head",
     ];
     for (const l in locations) {
-      const location = locations[l];
+      const locationPath = locations[l];
       (function (locationPath) {
         it(
           "should return a 422 (invalid uuid " + locationPath + ")",
@@ -688,7 +688,7 @@ describe("Crafatar", function () {
         6,
         true,
         true,
-        function (err, hash, img) {
+        function (err) {
           assert.strictEqual(err, null);
           done();
         },
@@ -701,7 +701,7 @@ describe("Crafatar", function () {
         6,
         true,
         true,
-        function (err, hash, img) {
+        function (err) {
           assert.strictEqual(err, null);
           done();
         },
@@ -714,7 +714,7 @@ describe("Crafatar", function () {
       helpers.get_cape(
         rid(),
         "61699b2ed3274a019f1e0ea8c3f06bc6",
-        function (err, hash, status, img) {
+        function (err) {
           assert.strictEqual(err, null);
           done();
         },
@@ -727,7 +727,7 @@ describe("Crafatar", function () {
       helpers.get_cape(
         rid(),
         "61699b2ed3274a019f1e0ea8c3f06bc6",
-        function (err, hash, status, img) {
+        function (err) {
           assert.strictEqual(err, null);
           done();
         },
@@ -737,7 +737,7 @@ describe("Crafatar", function () {
       helpers.get_cape(
         rid(),
         "2d5aa9cdaeb049189930461fc9b91cc5",
-        function (err, hash, status, img) {
+        function (err, img) {
           assert.ifError(err);
           assert.strictEqual(img, null);
           done();
@@ -751,7 +751,7 @@ describe("Crafatar", function () {
       helpers.get_cape(
         rid(),
         "2d5aa9cdaeb049189930461fc9b91cc5",
-        function (err, hash, status, img) {
+        function (err) {
           assert.strictEqual(err, null);
           done();
         },
@@ -764,7 +764,7 @@ describe("Crafatar", function () {
       helpers.get_cape(
         rid(),
         "2d5aa9cdaeb049189930461fc9b91cc5",
-        function (err, hash, status, img) {
+        function (err) {
           assert.strictEqual(err, null);
           done();
         },
@@ -777,36 +777,24 @@ describe("Crafatar", function () {
       await cache.get_redis().flushAll();
     });
     it("should be downloaded", function (done) {
-      helpers.get_avatar(
-        rid(),
-        uuid,
-        false,
-        160,
-        function (err, status, image) {
-          assert.ifError(err);
-          assert.strictEqual(status, 2);
-          done();
-        },
-      );
+      helpers.get_avatar(rid(), uuid, false, 160, function (err, status) {
+        assert.ifError(err);
+        assert.strictEqual(status, 2);
+        done();
+      });
     });
     it("should be cached", function (done) {
-      helpers.get_avatar(
-        rid(),
-        uuid,
-        false,
-        160,
-        function (err, status, image) {
-          assert.ifError(err);
-          assert.strictEqual(status === 0 || status === 1, true);
-          done();
-        },
-      );
+      helpers.get_avatar(rid(), uuid, false, 160, function (err, status) {
+        assert.ifError(err);
+        assert.strictEqual(status === 0 || status === 1, true);
+        done();
+      });
     });
   });
 
   describe("Networking: Skin", function () {
     it("should not fail (uuid)", function (done) {
-      helpers.get_skin(rid(), uuid, function (err, hash, status, img) {
+      helpers.get_skin(rid(), uuid, function (err) {
         assert.strictEqual(err, null);
         done();
       });
@@ -815,29 +803,22 @@ describe("Crafatar", function () {
 
   describe("Networking: Render", function () {
     it("should not fail (full body)", function (done) {
-      helpers.get_render(rid(), uuid, 6, true, true, function (err, hash, img) {
+      helpers.get_render(rid(), uuid, 6, true, true, function (err) {
         assert.ifError(err);
         done();
       });
     });
     it("should not fail (only head)", function (done) {
-      helpers.get_render(
-        rid(),
-        uuid,
-        6,
-        true,
-        false,
-        function (err, hash, img) {
-          assert.ifError(err);
-          done();
-        },
-      );
+      helpers.get_render(rid(), uuid, 6, true, false, function (err) {
+        assert.ifError(err);
+        done();
+      });
     });
   });
 
   describe("Networking: Cape", function () {
     it("should not fail (possible cape)", function (done) {
-      helpers.get_cape(rid(), uuid, function (err, hash, status, img) {
+      helpers.get_cape(rid(), uuid, function (err) {
         assert.ifError(err);
         done();
       });
@@ -864,7 +845,7 @@ describe("Crafatar", function () {
       const original_rate_limit = config.server.sessions_rate_limit;
       config.server.sessions_rate_limit = 1;
       networking.get_profile(rid(), uuid, function () {
-        networking.get_profile(rid(), uuid, function (err, profile) {
+        networking.get_profile(rid(), uuid, function (err) {
           assert.strictEqual(err.code, "RATELIMIT");
           config.server.sessions_rate_limit = original_rate_limit;
           done();

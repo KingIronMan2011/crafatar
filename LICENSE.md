@@ -1,3 +1,5 @@
+<!-- markdownlint-disable-file MD041 -->
+
 The MIT License (MIT)
 
 Copyright (c) 2026 KingIronMan2011
