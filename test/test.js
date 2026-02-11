@@ -154,7 +154,7 @@ describe("Crafatar", function() {
       });
     });
     it("should time out on skin download", function(done) {
-      const original_timeout = config.http_timeout;
+      const original_timeout = config.server.http_timeout;
       config.server.http_timeout = 1;
       networking.get_from(rid(), "http://textures.minecraft.net/texture/477be35554684c28bdeee4cf11c591d3c88afb77e0b98da893fd7bc318c65184", function(body, res, error) {
         assert.notStrictEqual(["ETIMEDOUT", "ESOCKETTIMEDOUT"].indexOf(error.code), -1);
