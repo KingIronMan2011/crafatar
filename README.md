@@ -37,11 +37,23 @@ Please [visit the website](https://crafatar.com) for details.
 
 ### Docker
 
+Using Docker Compose (recommended):
+
+```sh
+cd docker
+docker-compose up -d
+```
+
+Or manually:
+
 ```sh
 docker network create crafatar
-docker run --net crafatar -d --name redis redis
-docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 crafatar/crafatar
+docker run --net crafatar -d --name redis redis:7-alpine
+docker build -f docker/Dockerfile -t crafatar .
+docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 crafatar
 ```
+
+See [docker/README.md](docker/README.md) for more details.
 
 ### Manual
 

@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: crafatar-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - crafatar
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  crafatar:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: crafatar-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks:
+      - crafatar
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - NODE_ENV=production
+    volumes:
+      - crafatar-images:/home/app/crafatar/images
+    depends_on:
+      redis:
+        condition: service_healthy
+
+networks:
+  crafatar:
+    driver: bridge
+
+volumes:
+  crafatar-images:
+    driver: local

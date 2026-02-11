@@ -1,6 +1,15 @@
 FROM node:24-alpine AS builder
 
-RUN apk --no-cache add git python3 build-base redis cairo-dev pango-dev jpeg-dev giflib-dev pixman-dev
+RUN apk update && apk add --no-cache \
+    git \
+    python3 \
+    build-base \
+    redis \
+    cairo-dev \
+    pango-dev \
+    libjpeg-turbo-dev \
+    giflib-dev \
+    pixman-dev
 
 RUN adduser -D app
 USER app
@@ -18,7 +27,12 @@ RUN nohup redis-server & npm test
 
 
 FROM node:24-alpine
-RUN apk --no-cache add cairo pango jpeg giflib pixman
+RUN apk update && apk add --no-cache \
+    cairo \
+    pango \
+    libjpeg-turbo \
+    giflib \
+    pixman
 RUN adduser -D app
 USER app
 RUN mkdir /home/app/crafatar
