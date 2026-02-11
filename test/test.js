@@ -539,22 +539,22 @@ describe("Crafatar", function() {
     // testing all paths for Invalid UUID
     const locations = ["avatars", "skins", "capes", "renders/body", "renders/head"];
     for (const l in locations) {
-      const loc = locations[l];
-      (function(location) {
-        it("should return a 422 (invalid uuid " + location + ")", async function() {
-          const res = await axios.get("http://localhost:3000/" + location + "/thisisaninvaliduuid", {
+      const location = locations[l];
+      (function(locationPath) {
+        it("should return a 422 (invalid uuid " + locationPath + ")", async function() {
+          const res = await axios.get("http://localhost:3000/" + locationPath + "/thisisaninvaliduuid", {
             validateStatus: () => true
           });
           assert.strictEqual(res.status, 422);
         });
 
-        it("should return a 404 (invalid path " + location + ")", async function() {
-          const res = await axios.get("http://localhost:3000/" + location + "/853c80ef3c3749fdaa49938b674adae6/invalid", {
+        it("should return a 404 (invalid path " + locationPath + ")", async function() {
+          const res = await axios.get("http://localhost:3000/" + locationPath + "/853c80ef3c3749fdaa49938b674adae6/invalid", {
             validateStatus: () => true
           });
           assert.strictEqual(res.status, 404);
         });
-      }(loc));
+      }(locationPath));
     }
 
     it("should return /public resources", async function() {
