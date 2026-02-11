@@ -1,5 +1,5 @@
 /* eslint no-loop-func:0 guard-for-in:0 */
-import { describe, it, before, after } from "vitest";
+import { describe, it, beforeAll, afterAll } from "vitest";
 
 // no spam
 import logging from "../lib/logging.js";
@@ -59,7 +59,7 @@ function getRandomInt(min, max) {
 }
 
 describe("Crafatar", function () {
-  before(async function () {
+  beforeAll(async function () {
     console.log("Flushing and waiting for redis ...");
     await cache.get_redis().flushAll();
     console.log("Redis flushed!");
@@ -243,7 +243,7 @@ describe("Crafatar", function () {
       }
     }
 
-    before(function (done) {
+    beforeAll(function (done) {
       server.boot(function () {
         done();
       });
@@ -718,7 +718,7 @@ describe("Crafatar", function () {
       );
     });
     it("should already exist", function (done) {
-      before(async function () {
+      beforeAll(async function () {
         await cache.get_redis().flushAll();
       });
       helpers.get_cape(
@@ -755,7 +755,7 @@ describe("Crafatar", function () {
       );
     });
     it("should already exist", function (done) {
-      before(async function () {
+      beforeAll(async function () {
         await cache.get_redis().flushAll();
       });
       helpers.get_cape(
@@ -770,7 +770,7 @@ describe("Crafatar", function () {
   });
 
   describe("Networking: Avatar", function () {
-    before(async function () {
+    beforeAll(async function () {
       await cache.get_redis().flushAll();
     });
     it("should be downloaded", function (done) {
@@ -823,7 +823,7 @@ describe("Crafatar", function () {
   });
 
   describe("Errors", function () {
-    before(async function () {
+    beforeAll(async function () {
       await cache.get_redis().flushAll();
     });
 
@@ -851,7 +851,7 @@ describe("Crafatar", function () {
     });
   });
 
-  after(function (done) {
+  afterAll(function (done) {
     server.close(function (err) {
       if (err) {
         return done(err);
