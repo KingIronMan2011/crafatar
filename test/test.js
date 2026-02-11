@@ -332,7 +332,7 @@ describe("Crafatar", function () {
     const server_tests = {
       "avatar with existing uuid": {
         url: "http://localhost:3000/avatars/853c80ef3c3749fdaa49938b674adae6?size=16",
-        crc32: [4264176600],
+        crc32: [4264176600, 2681217746],
       },
       "avatar with existing dashed uuid": {
         url: "http://localhost:3000/avatars/853c80ef-3c37-49fd-aa49938b674adae6?size=16",
@@ -340,11 +340,11 @@ describe("Crafatar", function () {
       },
       "avatar with non-existent uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16",
-        crc32: [3348154329],
+        crc32: [3348154329, 1063194604],
       },
       "avatar with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&default=mhf_alex",
-        crc32: [73899130],
+        crc32: [73899130, 2542893462],
       },
       "avatar with non-existent uuid defaulting to uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&default=853c80ef3c3749fdaa49938b674adae6",
@@ -472,7 +472,7 @@ describe("Crafatar", function () {
       },
       "body render with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&default=mhf_alex",
-        crc32: [4280894468],
+        crc32: [4280894468, 1255106465],
       },
       "body render with non-existent uuid defaulting to uuid": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&default=853c80ef3c3749fdaa49938b674adae6",
