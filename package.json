@@ -2,21 +2,22 @@
   "name": "crafatar",
   "version": "2.1.5",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "node www.js",
     "test": "mocha"
   },
   "engines": {
-    "node": "<=16.20.2"
+    "node": ">=24.0.0"
   },
   "dependencies": {
-    "@randy.tarampi/lwip": "^3.0.17",
     "axios": "^1.13.5",
     "canvas": "^3.2.1",
     "crc": "^4.3.2",
     "ejs": "^4.0.1",
     "mime": "^4.1.0",
     "redis": "^5.10.0",
+    "sharp": "^0.33.5",
     "toobusy-js": "^0.5.1"
   },
   "devDependencies": {
