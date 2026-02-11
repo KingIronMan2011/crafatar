@@ -44,7 +44,7 @@ docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_
 
 ## Manual
 
-- Install [nodejs](https://nodejs.org/) 24 or higher
+- Install [nodejs](https://nodejs.org/) 20 or higher
 - Install `redis-server`
 - Run `npm install`  
   If that fails, it's likely because of `node-canvas` dependencies. Follow [this guide](https://github.com/Automattic/node-canvas/wiki#installation-guides) to install them.
