@@ -1,3 +1,5 @@
 images/*/*.png
 node_modules/
 coverage/
+.env
+.env.local
