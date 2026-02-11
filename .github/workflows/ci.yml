@@ -49,6 +49,6 @@ jobs:
         run: npm run format:check
 
       - name: Run tests
-        run: npm test
+        run: npm test:ui
         env:
           REDIS_URL: redis://localhost:6379

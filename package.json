@@ -12,7 +12,6 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
-    "test:ui:open": "vitest --ui --open",
     "test:coverage": "vitest run --coverage"
   },
   "engines": {
