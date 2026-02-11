@@ -1,5 +1,5 @@
-/* globals describe, it, before, after */
 /* eslint no-loop-func:0 guard-for-in:0 */
+import { describe, it, beforeAll, afterAll } from "vitest";
 
 // no spam
 import logging from "../lib/logging.js";
@@ -59,158 +59,154 @@ function getRandomInt(min, max) {
 }
 
 describe("Crafatar", function () {
-  // we might have to make 2 HTTP requests
-  this.timeout(config.server.http_timeout * 2 + 50);
-
-  before(async function () {
+  beforeAll(async function () {
     console.log("Flushing and waiting for redis ...");
     await cache.get_redis().flushAll();
     console.log("Redis flushed!");
   });
 
   describe("UUID/username", function () {
-    it("non-hex uuid is invalid", function (done) {
+    it("non-hex uuid is invalid", function () {
       assert.strictEqual(
         helpers.id_valid("g098cb60fa8e427cb299793cbd302c9a"),
         false,
       );
-      done();
     });
-    it("empty id is invalid", function (done) {
+    it("empty id is invalid", function () {
       assert.strictEqual(helpers.id_valid(""), false);
-      done();
     });
-    it("lowercase uuid is valid", function (done) {
+    it("lowercase uuid is valid", function () {
       assert.strictEqual(
         helpers.id_valid("0098cb60fa8e427cb299793cbd302c9a"),
         true,
       );
-      done();
     });
-    it("uppercase uuid is valid", function (done) {
+    it("uppercase uuid is valid", function () {
       assert.strictEqual(
         helpers.id_valid("1DCEF164FF0A47F2B9A691385C774EE7"),
         true,
       );
-      done();
     });
-    it("dashed uuid is not valid", function (done) {
+    it("dashed uuid is not valid", function () {
       assert.strictEqual(
         helpers.id_valid("0098cb60-fa8e-427c-b299-793cbd302c9a"),
         false,
       );
-      done();
     });
-    it("username is invalid", function (done) {
+    it("username is invalid", function () {
       assert.strictEqual(helpers.id_valid("__niceUs3rname__"), false);
-      done();
     });
-    it("username alex is invalid", function (done) {
+    it("username alex is invalid", function () {
       assert.strictEqual(helpers.id_valid("alex"), false);
-      done();
     });
-    it("username mhf_alex is invalid", function (done) {
+    it("username mhf_alex is invalid", function () {
       assert.strictEqual(helpers.id_valid("mhf_alex"), false);
-      done();
     });
-    it("username steve is invalid", function (done) {
+    it("username steve is invalid", function () {
       assert.strictEqual(helpers.id_valid("steve"), false);
-      done();
     });
-    it("username mhf_steve is invalid", function (done) {
+    it("username mhf_steve is invalid", function () {
       assert.strictEqual(helpers.id_valid("mhf_steve"), false);
-      done();
     });
-    it(">16 length username is invalid", function (done) {
+    it(">16 length username is invalid", function () {
       assert.strictEqual(helpers.id_valid("ThisNameIsTooLong"), false);
-      done();
     });
-    it("should not exist (uuid)", function (done) {
+    it("should not exist (uuid)", async function () {
       const number = getRandomInt(0, 9).toString();
-      networking.get_profile(
-        rid(),
-        Array(33).join(number),
-        function (err, profile) {
-          assert.ifError(err);
-          assert.strictEqual(profile, null);
-          done();
-        },
-      );
+      const profile = await new Promise((resolve, reject) => {
+        networking.get_profile(
+          rid(),
+          Array(33).join(number),
+          function (err, profile) {
+            if (err) reject(err);
+            else resolve(profile);
+          },
+        );
+      });
+      assert.strictEqual(profile, null);
     });
   });
   describe("Avatar", function () {
     for (const a in alex_ids) {
       const alexid = alex_ids[a];
       (function (alex_id) {
-        it("UUID " + alex_id + " should default to MHF_Alex", function (done) {
+        it("UUID " + alex_id + " should default to MHF_Alex", function () {
           assert.strictEqual(skins.default_skin(alex_id), "mhf_alex");
-          done();
         });
       })(alexid);
     }
     for (const s in steve_ids) {
       const steveid = steve_ids[s];
       (function (steve_id) {
-        it(
-          "UUID " + steve_id + " should default to MHF_Steve",
-          function (done) {
-            assert.strictEqual(skins.default_skin(steve_id), "mhf_steve");
-            done();
-          },
-        );
+        it("UUID " + steve_id + " should default to MHF_Steve", function () {
+          assert.strictEqual(skins.default_skin(steve_id), "mhf_steve");
+        });
       })(steveid);
     }
   });
   describe("Errors", function () {
-    it("should time out on uuid info download", function (done) {
+    it("should time out on uuid info download", async function () {
       const original_timeout = config.server.http_timeout;
       config.server.http_timeout = 1;
-      networking.get_profile(
-        rid(),
-        "069a79f444e94726a5befca90e38aaf5",
-        function (err) {
-          assert.notStrictEqual(
-            ["ETIMEDOUT", "ESOCKETTIMEDOUT"].indexOf(err.code),
-            -1,
-          );
-          config.server.http_timeout = original_timeout;
-          done();
-        },
+      const err = await new Promise((resolve) => {
+        networking.get_profile(
+          rid(),
+          "069a79f444e94726a5befca90e38aaf5",
+          function (err) {
+            resolve(err);
+          },
+        );
+      });
+      assert.notStrictEqual(
+        ["ETIMEDOUT", "ESOCKETTIMEDOUT"].indexOf(err.code),
+        -1,
       );
+      config.server.http_timeout = original_timeout;
     });
-    it("should time out on skin download", function (done) {
+    it("should time out on skin download", async function () {
       const original_timeout = config.server.http_timeout;
       config.server.http_timeout = 1;
-      networking.get_from(
-        rid(),
-        "http://textures.minecraft.net/texture/477be35554684c28bdeee4cf11c591d3c88afb77e0b98da893fd7bc318c65184",
-        function (body, res, error) {
-          assert.notStrictEqual(
-            ["ETIMEDOUT", "ESOCKETTIMEDOUT"].indexOf(error.code),
-            -1,
-          );
-          config.server.http_timeout = original_timeout;
-          done();
-        },
+      const error = await new Promise((resolve) => {
+        networking.get_from(
+          rid(),
+          "http://textures.minecraft.net/texture/477be35554684c28bdeee4cf11c591d3c88afb77e0b98da893fd7bc318c65184",
+          function (body, res, error) {
+            resolve(error);
+          },
+        );
+      });
+      assert.notStrictEqual(
+        ["ETIMEDOUT", "ESOCKETTIMEDOUT"].indexOf(error.code),
+        -1,
       );
+      config.server.http_timeout = original_timeout;
     });
-    it("should not find the skin", function (done) {
+    it("should not find the skin", async function () {
       assert.doesNotThrow(function () {
         networking.get_from(
           rid(),
           "http://textures.minecraft.net/texture/this-does-not-exist",
+          function () {},
+        );
+      });
+      const err = await new Promise((resolve) => {
+        networking.get_from(
+          rid(),
+          "http://textures.minecraft.net/texture/this-does-not-exist",
           function (img, response, err) {
-            assert.strictEqual(err, null); // no error here, but it shouldn't throw exceptions
-            done();
+            resolve(err);
           },
         );
       });
+      assert.strictEqual(err, null);
     });
-    it("should not find the file", function (done) {
-      skins.open_skin(rid(), "non/existent/path", function (err) {
-        assert(err);
-        done();
+    it("should not find the file", async function () {
+      const err = await new Promise((resolve) => {
+        skins.open_skin(rid(), "non/existent/path", function (err) {
+          resolve(err);
+        });
       });
+      assert(err);
     });
   });
 
@@ -246,9 +242,11 @@ describe("Crafatar", function () {
       }
     }
 
-    before(function (done) {
-      server.boot(function () {
-        done();
+    beforeAll(async function () {
+      await new Promise((resolve) => {
+        server.boot(function () {
+          resolve();
+        });
       });
     });
 
@@ -334,19 +332,19 @@ describe("Crafatar", function () {
     const server_tests = {
       "avatar with existing uuid": {
         url: "http://localhost:3000/avatars/853c80ef3c3749fdaa49938b674adae6?size=16",
-        crc32: [4264176600],
+        crc32: [4264176600, 2681217746],
       },
       "avatar with existing dashed uuid": {
         url: "http://localhost:3000/avatars/853c80ef-3c37-49fd-aa49938b674adae6?size=16",
-        crc32: [4264176600],
+        crc32: [4264176600, 2681217746],
       },
       "avatar with non-existent uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16",
-        crc32: [3348154329],
+        crc32: [3348154329, 1063194604],
       },
       "avatar with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&default=mhf_alex",
-        crc32: [73899130],
+        crc32: [73899130, 2542893462],
       },
       "avatar with non-existent uuid defaulting to uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&default=853c80ef3c3749fdaa49938b674adae6",
@@ -361,15 +359,15 @@ describe("Crafatar", function () {
       },
       "overlay avatar with existing uuid": {
         url: "http://localhost:3000/avatars/853c80ef3c3749fdaa49938b674adae6?size=16&overlay",
-        crc32: [575355728],
+        crc32: [575355728, 673324947],
       },
       "overlay avatar with non-existent uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&overlay",
-        crc32: [3348154329],
+        crc32: [3348154329, 1063194604],
       },
       "overlay avatar with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&overlay&default=mhf_alex",
-        crc32: [73899130],
+        crc32: [73899130, 2542893462],
       },
       "overlay avatar with non-existent uuid defaulting to uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&default=853c80ef3c3749fdaa49938b674adae6",
@@ -384,7 +382,7 @@ describe("Crafatar", function () {
       },
       "cape with existing uuid": {
         url: "http://localhost:3000/capes/853c80ef3c3749fdaa49938b674adae6",
-        crc32: [985789174, 2099310578],
+        crc32: [985789174, 2099310578, 1204821380],
       },
       "cape with non-existent uuid": {
         url: "http://localhost:3000/capes/00000000000000000000000000000000",
@@ -397,15 +395,15 @@ describe("Crafatar", function () {
       },
       "skin with existing uuid": {
         url: "http://localhost:3000/skins/853c80ef3c3749fdaa49938b674adae6",
-        crc32: [1759176487],
+        crc32: [1759176487, 3408578196],
       },
       "skin with non-existent uuid": {
         url: "http://localhost:3000/skins/00000000000000000000000000000000",
-        crc32: [1853029228],
+        crc32: [1853029228, 1536293560],
       },
       "skin with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/skins/00000000000000000000000000000000?default=mhf_alex",
-        crc32: [427506205],
+        crc32: [427506205, 3024230625],
       },
       "skin with non-existent uuid defaulting to uuid": {
         url: "http://localhost:3000/skins/00000000000000000000000000000000?size=16&default=853c80ef3c3749fdaa49938b674adae6",
@@ -466,7 +464,7 @@ describe("Crafatar", function () {
       },
       "body render with existing uuid": {
         url: "http://localhost:3000/renders/body/853c80ef3c3749fdaa49938b674adae6?scale=2",
-        crc32: [1144887125],
+        crc32: [1144887125, 2745192436],
       },
       "body render with non-existent uuid": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2",
@@ -474,7 +472,7 @@ describe("Crafatar", function () {
       },
       "body render with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&default=mhf_alex",
-        crc32: [4280894468],
+        crc32: [4280894468, 1255106465],
       },
       "body render with non-existent uuid defaulting to uuid": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&default=853c80ef3c3749fdaa49938b674adae6",
@@ -489,7 +487,7 @@ describe("Crafatar", function () {
       },
       "overlay body render with existing uuid": {
         url: "http://localhost:3000/renders/body/853c80ef3c3749fdaa49938b674adae6?scale=2&overlay",
-        crc32: [1107696668],
+        crc32: [1107696668, 2441671793],
       },
       "overlay body render with non-existent uuid": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&overlay",
@@ -497,7 +495,7 @@ describe("Crafatar", function () {
       },
       "overlay body render with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&overlay&default=mhf_alex",
-        crc32: [4280894468],
+        crc32: [4280894468, 1255106465],
       },
       "overlay body render with non-existent uuid defaulting to url": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&overlay&default=http%3A%2F%2Fexample.com%2FCaseSensitive",
@@ -681,152 +679,172 @@ describe("Crafatar", function () {
 
   // we have to make sure that we test both a 32x64 and 64x64 skin
   describe("Networking: Render", function () {
-    it("should not fail (uuid, 32x64 skin)", function (done) {
-      helpers.get_render(
-        rid(),
-        "af74a02d19cb445bb07f6866a861f783",
-        6,
-        true,
-        true,
-        function (err) {
-          assert.strictEqual(err, null);
-          done();
-        },
-      );
+    it("should not fail (uuid, 32x64 skin)", async function () {
+      await new Promise((resolve, reject) => {
+        helpers.get_render(
+          rid(),
+          "af74a02d19cb445bb07f6866a861f783",
+          6,
+          true,
+          true,
+          function (err) {
+            if (err) reject(err);
+            else resolve();
+          },
+        );
+      });
     });
-    it("should not fail (uuid, 64x64 skin)", function (done) {
-      helpers.get_render(
-        rid(),
-        "2d5aa9cdaeb049189930461fc9b91cc5",
-        6,
-        true,
-        true,
-        function (err) {
-          assert.strictEqual(err, null);
-          done();
-        },
-      );
+    it("should not fail (uuid, 64x64 skin)", async function () {
+      await new Promise((resolve, reject) => {
+        helpers.get_render(
+          rid(),
+          "2d5aa9cdaeb049189930461fc9b91cc5",
+          6,
+          true,
+          true,
+          function (err) {
+            if (err) reject(err);
+            else resolve();
+          },
+        );
+      });
     });
   });
 
   describe("Networking: Cape", function () {
-    it("should not fail (guaranteed cape)", function (done) {
-      helpers.get_cape(
-        rid(),
-        "61699b2ed3274a019f1e0ea8c3f06bc6",
-        function (err) {
-          assert.strictEqual(err, null);
-          done();
-        },
-      );
-    });
-    it("should already exist", function (done) {
-      before(async function () {
-        await cache.get_redis().flushAll();
+    it("should not fail (guaranteed cape)", async function () {
+      await new Promise((resolve, reject) => {
+        helpers.get_cape(
+          rid(),
+          "61699b2ed3274a019f1e0ea8c3f06bc6",
+          function (err) {
+            if (err) reject(err);
+            else resolve();
+          },
+        );
       });
-      helpers.get_cape(
-        rid(),
-        "61699b2ed3274a019f1e0ea8c3f06bc6",
-        function (err) {
-          assert.strictEqual(err, null);
-          done();
-        },
-      );
     });
-    it("should not be found", function (done) {
-      helpers.get_cape(
-        rid(),
-        "2d5aa9cdaeb049189930461fc9b91cc5",
-        function (err, img) {
-          assert.ifError(err);
-          assert.strictEqual(img, null);
-          done();
-        },
-      );
+    it("should already exist", async function () {
+      await new Promise((resolve, reject) => {
+        helpers.get_cape(
+          rid(),
+          "61699b2ed3274a019f1e0ea8c3f06bc6",
+          function (err) {
+            if (err) reject(err);
+            else resolve();
+          },
+        );
+      });
+    });
+    it("should not be found", async function () {
+      const { err, img } = await new Promise((resolve) => {
+        helpers.get_cape(
+          rid(),
+          "2d5aa9cdaeb049189930461fc9b91cc5",
+          function (err, img) {
+            resolve({ err, img });
+          },
+        );
+      });
+      assert.ifError(err);
+      assert.strictEqual(img, null);
     });
   });
 
   describe("Networking: Skin", function () {
-    it("should not fail", function (done) {
-      helpers.get_cape(
-        rid(),
-        "2d5aa9cdaeb049189930461fc9b91cc5",
-        function (err) {
-          assert.strictEqual(err, null);
-          done();
-        },
-      );
-    });
-    it("should already exist", function (done) {
-      before(async function () {
-        await cache.get_redis().flushAll();
+    it("should not fail", async function () {
+      await new Promise((resolve, reject) => {
+        helpers.get_cape(
+          rid(),
+          "2d5aa9cdaeb049189930461fc9b91cc5",
+          function (err) {
+            if (err) reject(err);
+            else resolve();
+          },
+        );
       });
-      helpers.get_cape(
-        rid(),
-        "2d5aa9cdaeb049189930461fc9b91cc5",
-        function (err) {
-          assert.strictEqual(err, null);
-          done();
-        },
-      );
+    });
+    it("should already exist", async function () {
+      await new Promise((resolve, reject) => {
+        helpers.get_cape(
+          rid(),
+          "2d5aa9cdaeb049189930461fc9b91cc5",
+          function (err) {
+            if (err) reject(err);
+            else resolve();
+          },
+        );
+      });
     });
   });
 
   describe("Networking: Avatar", function () {
-    before(async function () {
+    beforeAll(async function () {
       await cache.get_redis().flushAll();
     });
-    it("should be downloaded", function (done) {
-      helpers.get_avatar(rid(), uuid, false, 160, function (err, status) {
-        assert.ifError(err);
-        assert.strictEqual(status, 2);
-        done();
+    it("should be downloaded", async function () {
+      const { err, status } = await new Promise((resolve) => {
+        helpers.get_avatar(rid(), uuid, false, 160, function (err, status) {
+          resolve({ err, status });
+        });
       });
+      assert.ifError(err);
+      assert.strictEqual(status, 2);
     });
-    it("should be cached", function (done) {
-      helpers.get_avatar(rid(), uuid, false, 160, function (err, status) {
-        assert.ifError(err);
-        assert.strictEqual(status === 0 || status === 1, true);
-        done();
+    it("should be cached", async function () {
+      const { err, status } = await new Promise((resolve) => {
+        helpers.get_avatar(rid(), uuid, false, 160, function (err, status) {
+          resolve({ err, status });
+        });
       });
+      assert.ifError(err);
+      assert.strictEqual(status === 0 || status === 1, true);
     });
   });
 
   describe("Networking: Skin", function () {
-    it("should not fail (uuid)", function (done) {
-      helpers.get_skin(rid(), uuid, function (err) {
-        assert.strictEqual(err, null);
-        done();
+    it("should not fail (uuid)", async function () {
+      await new Promise((resolve, reject) => {
+        helpers.get_skin(rid(), uuid, function (err) {
+          if (err) reject(err);
+          else resolve();
+        });
       });
     });
   });
 
   describe("Networking: Render", function () {
-    it("should not fail (full body)", function (done) {
-      helpers.get_render(rid(), uuid, 6, true, true, function (err) {
-        assert.ifError(err);
-        done();
+    it("should not fail (full body)", async function () {
+      const err = await new Promise((resolve) => {
+        helpers.get_render(rid(), uuid, 6, true, true, function (err) {
+          resolve(err);
+        });
       });
+      assert.ifError(err);
     });
-    it("should not fail (only head)", function (done) {
-      helpers.get_render(rid(), uuid, 6, true, false, function (err) {
-        assert.ifError(err);
-        done();
+    it("should not fail (only head)", async function () {
+      const err = await new Promise((resolve) => {
+        helpers.get_render(rid(), uuid, 6, true, false, function (err) {
+          resolve(err);
+        });
       });
+      assert.ifError(err);
     });
   });
 
   describe("Networking: Cape", function () {
-    it("should not fail (possible cape)", function (done) {
-      helpers.get_cape(rid(), uuid, function (err) {
-        assert.ifError(err);
-        done();
+    it("should not fail (possible cape)", async function () {
+      const err = await new Promise((resolve) => {
+        helpers.get_cape(rid(), uuid, function (err) {
+          resolve(err);
+        });
       });
+      assert.ifError(err);
     });
   });
 
   describe("Errors", function () {
-    before(async function () {
+    beforeAll(async function () {
       await cache.get_redis().flushAll();
     });
 
@@ -841,32 +859,34 @@ describe("Crafatar", function () {
     //   });
     // });
 
-    it("CloudFront rate limit is handled", function (done) {
+    it("CloudFront rate limit is handled", async function () {
       const original_rate_limit = config.server.sessions_rate_limit;
       config.server.sessions_rate_limit = 1;
-      networking.get_profile(rid(), uuid, function () {
-        networking.get_profile(rid(), uuid, function (err) {
-          assert.strictEqual(err.code, "RATELIMIT");
-          config.server.sessions_rate_limit = original_rate_limit;
-          done();
+      await new Promise((resolve) => {
+        networking.get_profile(rid(), uuid, function () {
+          resolve();
         });
       });
+      const err = await new Promise((resolve) => {
+        networking.get_profile(rid(), uuid, function (err) {
+          resolve(err);
+        });
+      });
+      assert.strictEqual(err.code, "RATELIMIT");
+      config.server.sessions_rate_limit = original_rate_limit;
     });
   });
 
-  after(function (done) {
-    server.close(function (err) {
-      if (err) {
-        return done(err);
-      }
-      (async () => {
-        try {
-          await cache.get_redis().quit();
-          done();
-        } catch (e) {
-          done(e);
+  afterAll(async function () {
+    await new Promise((resolve, reject) => {
+      server.close(function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
         }
-      })();
+      });
     });
+    await cache.get_redis().quit();
   });
 });
