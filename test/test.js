@@ -138,12 +138,9 @@ describe("Crafatar", function () {
     for (const s in steve_ids) {
       const steveid = steve_ids[s];
       (function (steve_id) {
-        it(
-          "UUID " + steve_id + " should default to MHF_Steve",
-          function () {
-            assert.strictEqual(skins.default_skin(steve_id), "mhf_steve");
-          },
-        );
+        it("UUID " + steve_id + " should default to MHF_Steve", function () {
+          assert.strictEqual(skins.default_skin(steve_id), "mhf_steve");
+        });
       })(steveid);
     }
   });
