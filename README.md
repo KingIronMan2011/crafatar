@@ -2,8 +2,6 @@
 
 <img alt="logo" src="lib/public/logo.png" style="float:right;width:128px;height:128px;">
 
-[![travis](https://img.shields.io/travis/KingIronMan2011/crafatar/master.svg?style=flat-square)](https://travis-ci.org/KingIronMan2011/crafatar/) [![Coverage Status](https://img.shields.io/coveralls/KingIronMan2011/crafatar.svg?style=flat-square)](https://coveralls.io/r/KingIronMan2011/crafatar) [![Code Climate](https://img.shields.io/codeclimate/github/KingIronMan2011/crafatar.svg?style=flat-square)](https://codeclimate.com/github/KingIronMan2011/crafatar) [![dependency status](https://img.shields.io/david/KingIronMan2011/crafatar.svg?style=flat-square)](https://david-dm.org/KingIronMan2011/crafatar) [![devDependency status](https://img.shields.io/david/dev/KingIronMan2011/crafatar.svg?style=flat-square)](https://david-dm.org/KingIronMan2011/crafatar#info=devDependencies) [![docs status](https://inch-ci.org/github/KingIronMan2011/crafatar.svg?branch=master&style=flat-square)](https://inch-ci.org/github/KingIronMan2011/crafatar)
-
 <a href="https://crafatar.com">Crafatar</a> serves Minecraft avatars based on the skin for use in external applications.
 Inspired by <a href="https://gravatar.com">Gravatar</a> (hence the name) and <a href="https://minotar.net">Minotar</a>.
 
