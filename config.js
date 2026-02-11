@@ -5,7 +5,7 @@ const config = {
     // for avatars; large values might lead to slow response time or DoS
     max_size: parseInt(process.env.AVATAR_MAX) || 512,
     // for avatars; size to be used when no size given
-    default_size: parseInt(process.env.AVATAR_DEFAULT) ||  160
+    default_size: parseInt(process.env.AVATAR_DEFAULT) || 160,
   },
   renders: {
     // for 3D rendered skins
@@ -13,7 +13,7 @@ const config = {
     // for 3D rendered skins; large values might lead to slow response time or DoS
     max_scale: parseInt(process.env.RENDER_MAX) || 10,
     // for 3D rendered skins; scale to be used when no scale given
-    default_scale: parseInt(process.env.RENDER_DEFAULT) || 6
+    default_scale: parseInt(process.env.RENDER_DEFAULT) || 6,
   },
   directories: {
     // directory where faces are kept. must have trailing "/"
@@ -25,7 +25,7 @@ const config = {
     // directory where rendered skins are kept. must have trailing "/"
     renders: process.env.RENDER_DIR || "./images/renders/",
     // directory where capes are kept. must have trailing "/"
-    capes: process.env.CAPE_DIR || "./images/capes/"
+    capes: process.env.CAPE_DIR || "./images/capes/",
   },
   caching: {
     // seconds until we will check if user's skin changed.
@@ -37,10 +37,10 @@ const config = {
     // Use this to avoid issues when you have a persistent redis database but an ephemeral storage
     ephemeral: process.env.EPHEMERAL_STORAGE === "true",
     // Used for information on the front page
-    cloudflare: process.env.CLOUDFLARE === "true"
+    cloudflare: process.env.CLOUDFLARE === "true",
   },
   // URL of your redis server
-  redis: process.env.REDIS_URL || 'redis://localhost:6379',
+  redis: process.env.REDIS_URL || "redis://localhost:6379",
   server: {
     // port to listen on
     port: parseInt(process.env.PORT) || 3000,
@@ -54,11 +54,11 @@ const config = {
     log_time: process.env.LOG_TIME === "true",
     // rate limit per second for outgoing requests to the Mojang session server
     // requests exceeding this limit are skipped and considered failed
-    sessions_rate_limit: parseInt(process.env.SESSIONS_RATE_LIMIT)
+    sessions_rate_limit: parseInt(process.env.SESSIONS_RATE_LIMIT),
   },
   sponsor: {
     sidebar: process.env.SPONSOR_SIDE,
-    top_right: process.env.SPONSOR_TOP_RIGHT
+    top_right: process.env.SPONSOR_TOP_RIGHT,
   },
 };
 
