@@ -1,6 +1,5 @@
 import networking from "./lib/networking.js";
 import logging from "./lib/logging.js";
-import config from "./config.js";
 import server from "./lib/server.js";
 
 process.on("uncaughtException", function(err) {
