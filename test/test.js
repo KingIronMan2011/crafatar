@@ -336,7 +336,7 @@ describe("Crafatar", function () {
       },
       "avatar with existing dashed uuid": {
         url: "http://localhost:3000/avatars/853c80ef-3c37-49fd-aa49938b674adae6?size=16",
-        crc32: [4264176600],
+        crc32: [4264176600, 2681217746],
       },
       "avatar with non-existent uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16",
@@ -359,15 +359,15 @@ describe("Crafatar", function () {
       },
       "overlay avatar with existing uuid": {
         url: "http://localhost:3000/avatars/853c80ef3c3749fdaa49938b674adae6?size=16&overlay",
-        crc32: [575355728],
+        crc32: [575355728, 673324947],
       },
       "overlay avatar with non-existent uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&overlay",
-        crc32: [3348154329],
+        crc32: [3348154329, 1063194604],
       },
       "overlay avatar with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&overlay&default=mhf_alex",
-        crc32: [73899130],
+        crc32: [73899130, 2542893462],
       },
       "overlay avatar with non-existent uuid defaulting to uuid": {
         url: "http://localhost:3000/avatars/00000000000000000000000000000000?size=16&default=853c80ef3c3749fdaa49938b674adae6",
@@ -382,7 +382,7 @@ describe("Crafatar", function () {
       },
       "cape with existing uuid": {
         url: "http://localhost:3000/capes/853c80ef3c3749fdaa49938b674adae6",
-        crc32: [985789174, 2099310578],
+        crc32: [985789174, 2099310578, 1204821380],
       },
       "cape with non-existent uuid": {
         url: "http://localhost:3000/capes/00000000000000000000000000000000",
@@ -395,15 +395,15 @@ describe("Crafatar", function () {
       },
       "skin with existing uuid": {
         url: "http://localhost:3000/skins/853c80ef3c3749fdaa49938b674adae6",
-        crc32: [1759176487],
+        crc32: [1759176487, 3408578196],
       },
       "skin with non-existent uuid": {
         url: "http://localhost:3000/skins/00000000000000000000000000000000",
-        crc32: [1853029228],
+        crc32: [1853029228, 1536293560],
       },
       "skin with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/skins/00000000000000000000000000000000?default=mhf_alex",
-        crc32: [427506205],
+        crc32: [427506205, 3024230625],
       },
       "skin with non-existent uuid defaulting to uuid": {
         url: "http://localhost:3000/skins/00000000000000000000000000000000?size=16&default=853c80ef3c3749fdaa49938b674adae6",
@@ -464,7 +464,7 @@ describe("Crafatar", function () {
       },
       "body render with existing uuid": {
         url: "http://localhost:3000/renders/body/853c80ef3c3749fdaa49938b674adae6?scale=2",
-        crc32: [1144887125],
+        crc32: [1144887125, 2745192436],
       },
       "body render with non-existent uuid": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2",
@@ -487,7 +487,7 @@ describe("Crafatar", function () {
       },
       "overlay body render with existing uuid": {
         url: "http://localhost:3000/renders/body/853c80ef3c3749fdaa49938b674adae6?scale=2&overlay",
-        crc32: [1107696668],
+        crc32: [1107696668, 2441671793],
       },
       "overlay body render with non-existent uuid": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&overlay",
@@ -495,7 +495,7 @@ describe("Crafatar", function () {
       },
       "overlay body render with non-existent uuid defaulting to mhf_alex": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&overlay&default=mhf_alex",
-        crc32: [4280894468],
+        crc32: [4280894468, 1255106465],
       },
       "overlay body render with non-existent uuid defaulting to url": {
         url: "http://localhost:3000/renders/body/00000000000000000000000000000000?scale=2&overlay&default=http%3A%2F%2Fexample.com%2FCaseSensitive",
