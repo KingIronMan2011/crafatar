@@ -724,9 +724,18 @@ describe("Crafatar", function() {
   });
 
   after(function(done) {
-    server.close(async function() {
-      await cache.get_redis().quit();
-      done();
+    server.close(function(err) {
+      if (err) {
+        return done(err);
+      }
+      (async () => {
+        try {
+          await cache.get_redis().quit();
+          done();
+        } catch (e) {
+          done(e);
+        }
+      })();
     });
   });
 });
