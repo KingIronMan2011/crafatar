@@ -66,6 +66,7 @@ textarea {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  user-select: none;
 }
 .btn-toolbar:after,
 .clearfix:after,
@@ -190,6 +191,7 @@ html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
+  appearance: none;
   cursor: pointer;
 }
 button[disabled],
@@ -218,6 +220,7 @@ input[type="search"] {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   -webkit-appearance: none;
+  appearance: none;
 }
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
@@ -3888,7 +3891,7 @@ a.label:hover {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
-@media screen and (min-width: 0 \0) {
+@media screen and (min-width: 0px) {
   .progress {
     background-color: #eee;
     border-radius: 0.25rem;
@@ -3962,7 +3965,7 @@ a.label:hover {
 .progress-success[value]::-moz-progress-bar {
   background-color: #5cb85c;
 }
-@media screen and (min-width: 0 \0) {
+@media screen and (min-width: 0px) {
   .progress-bar-striped {
     background-image: -webkit-linear-gradient(
       45deg,
@@ -4012,7 +4015,7 @@ a.label:hover {
 .progress-info[value]::-moz-progress-bar {
   background-color: #5bc0de;
 }
-@media screen and (min-width: 0 \0) {
+@media screen and (min-width: 0px) {
   .progress-info .progress-bar {
     background-color: #5bc0de;
   }
@@ -4023,7 +4026,7 @@ a.label:hover {
 .progress-warning[value]::-moz-progress-bar {
   background-color: #f0ad4e;
 }
-@media screen and (min-width: 0 \0) {
+@media screen and (min-width: 0px) {
   .progress-warning .progress-bar {
     background-color: #f0ad4e;
   }
@@ -4034,7 +4037,7 @@ a.label:hover {
 .progress-danger[value]::-moz-progress-bar {
   background-color: #d9534f;
 }
-@media screen and (min-width: 0 \0) {
+@media screen and (min-width: 0px) {
   .progress-danger .progress-bar {
     background-color: #d9534f;
   }
@@ -4251,6 +4254,7 @@ button.list-group-item-state.active:hover {
 }
 button.close {
   -webkit-appearance: none;
+  appearance: none;
   padding: 0;
   cursor: pointer;
   background: 0 0;
@@ -4259,6 +4263,7 @@ button.close {
 .modal-content,
 .popover {
   -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
 .modal {
   position: fixed;
