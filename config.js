@@ -1,4 +1,4 @@
-var config = {
+const config = {
   avatars: {
     // for avatars
     min_size: parseInt(process.env.AVATAR_MIN) || 1,
@@ -62,4 +62,4 @@ var config = {
   },
 };
 
-module.exports = config;
+export default config;

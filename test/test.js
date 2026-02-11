@@ -2,33 +2,33 @@
 /* eslint no-loop-func:0 guard-for-in:0 */
 
 // no spam
-var logging = require("../lib/logging");
+import logging from "../lib/logging.js";
 if (process.env.VERBOSE_TEST !== "true") {
   logging.log = logging.debug = logging.warn = logging.error = function() {};
 }
 
-var networking = require("../lib/networking");
-var helpers = require("../lib/helpers");
-var request = require("request");
-var config = require("../config");
-var server = require("../lib/server");
-var assert = require("assert");
-var skins = require("../lib/skins");
-var cache = require("../lib/cache");
-var crc = require("crc").crc32;
-var fs = require("fs");
+import networking from "../lib/networking.js";
+import helpers from "../lib/helpers.js";
+import axios from "axios";
+import config from "../config.js";
+import server from "../lib/server.js";
+import assert from "assert";
+import skins from "../lib/skins.js";
+import cache from "../lib/cache.js";
+import { crc32 as crc } from "crc";
+import fs from "fs";
 
 // we don't want tests to fail because of slow internet
 config.server.http_timeout *= 3;
 
-var uuids = fs.readFileSync("test/uuids.txt").toString().split(/\r?\n/);
+const uuids = fs.readFileSync("test/uuids.txt").toString().split(/\r?\n/);
 
 // Get a random UUIDto prevent rate limiting
-var uuid = uuids[Math.round(Math.random() * (uuids.length - 1))];
+const uuid = uuids[Math.round(Math.random() * (uuids.length - 1))];
 
 
 // Let's hope these will never be assigned
-var steve_ids = [
+const steve_ids = [
   "fffffff0" + "fffffff0" + "fffffff0" + "fffffff0",
   "fffffff0" + "fffffff0" + "fffffff1" + "fffffff1",
   "fffffff0" + "fffffff1" + "fffffff0" + "fffffff1",
@@ -39,7 +39,7 @@ var steve_ids = [
   "fffffff1" + "fffffff1" + "fffffff1" + "fffffff1",
 ];
 // Let's hope these will never be assigned
-var alex_ids = [
+const alex_ids = [
   "fffffff0" + "fffffff0" + "fffffff0" + "fffffff1",
   "fffffff0" + "fffffff0" + "fffffff1" + "fffffff0",
   "fffffff0" + "fffffff1" + "fffffff0" + "fffffff0",
@@ -63,12 +63,10 @@ describe("Crafatar", function() {
   // we might have to make 2 HTTP requests
   this.timeout(config.server.http_timeout * 2 + 50);
 
-  before(function(done) {
+  before(async function() {
     console.log("Flushing and waiting for redis ...");
-    cache.get_redis().flushall(function() {
-      console.log("Redis flushed!");
-      done();
-    });
+    await cache.get_redis().flushAll();
+    console.log("Redis flushed!");
   });
 
   describe("UUID/username", function() {
@@ -117,7 +115,7 @@ describe("Crafatar", function() {
       done();
     });
     it("should not exist (uuid)", function(done) {
-      var number = getRandomInt(0, 9).toString();
+      const number = getRandomInt(0, 9).toString();
       networking.get_profile(rid(), Array(33).join(number), function(err, profile) {
         assert.ifError(err);
         assert.strictEqual(profile, null);
@@ -126,8 +124,8 @@ describe("Crafatar", function() {
     });
   });
   describe("Avatar", function() {
-    for (var a in alex_ids) {
-      var alexid = alex_ids[a];
+    for (const a in alex_ids) {
+      const alexid = alex_ids[a];
       (function(alex_id) {
         it("UUID " + alex_id + " should default to MHF_Alex", function(done) {
           assert.strictEqual(skins.default_skin(alex_id), "mhf_alex");
@@ -135,8 +133,8 @@ describe("Crafatar", function() {
         });
       }(alexid));
     }
-    for (var s in steve_ids) {
-      var steveid = steve_ids[s];
+    for (const s in steve_ids) {
+      const steveid = steve_ids[s];
       (function(steve_id) {
         it("UUID " + steve_id + " should default to MHF_Steve", function(done) {
           assert.strictEqual(skins.default_skin(steve_id), "mhf_steve");
@@ -147,7 +145,7 @@ describe("Crafatar", function() {
   });
   describe("Errors", function() {
     it("should time out on uuid info download", function(done) {
-      var original_timeout = config.server.http_timeout;
+      const original_timeout = config.server.http_timeout;
       config.server.http_timeout = 1;
       networking.get_profile(rid(), "069a79f444e94726a5befca90e38aaf5", function(err, profile) {
         assert.notStrictEqual(["ETIMEDOUT", "ESOCKETTIMEDOUT"].indexOf(err.code), -1);
@@ -156,7 +154,7 @@ describe("Crafatar", function() {
       });
     });
     it("should time out on skin download", function(done) {
-      var original_timeout = config.http_timeout;
+      const original_timeout = config.server.http_timeout;
       config.server.http_timeout = 1;
       networking.get_from(rid(), "http://textures.minecraft.net/texture/477be35554684c28bdeee4cf11c591d3c88afb77e0b98da893fd7bc318c65184", function(body, res, error) {
         assert.notStrictEqual(["ETIMEDOUT", "ESOCKETTIMEDOUT"].indexOf(error.code), -1);
@@ -192,18 +190,21 @@ describe("Crafatar", function() {
 
     // throws Exception when +url+ is requested with +etag+
     // and it does not return 304 without a body
-    function assert_cache(url, etag, callback) {
-      request.get(url, {
-        headers: {
-          "If-None-Match": etag,
-        },
-      }, function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(body, '');
-        assert.equal(res.statusCode, 304);
+    async function assert_cache(url, etag, callback) {
+      try {
+        const res = await axios.get(url, {
+          headers: {
+            "If-None-Match": etag,
+          },
+          validateStatus: () => true,
+        });
+        assert.strictEqual(res.data, '');
+        assert.equal(res.status, 304);
         assert_headers(res);
         callback();
-      });
+      } catch (error) {
+        callback(error);
+      }
     }
 
     before(function(done) {
@@ -212,90 +213,77 @@ describe("Crafatar", function() {
       });
     });
 
-    it("should return 405 Method Not Allowed for POST", function(done) {
-      request.post("http://localhost:3000", function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 405);
-        done();
-      });
+    it("should return 405 Method Not Allowed for POST", async function() {
+      const res = await axios.post("http://localhost:3000", {}, { validateStatus: () => true });
+      assert.strictEqual(res.status, 405);
     });
 
-    it("should return correct HTTP response for home page", function(done) {
-      var url = "http://localhost:3000";
-      request.get(url, function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 200);
-        assert_headers(res);
-        assert(res.headers.etag);
-        assert.strictEqual(res.headers["content-type"], "text/html; charset=utf-8");
-        assert.strictEqual(res.headers.etag, '"' + crc(body) + '"');
-        assert(body);
+    it("should return correct HTTP response for home page", async function() {
+      const url = "http://localhost:3000";
+      const res = await axios.get(url, { validateStatus: () => true });
+      assert.strictEqual(res.status, 200);
+      assert_headers(res);
+      assert(res.headers.etag);
+      assert.strictEqual(res.headers["content-type"], "text/html; charset=utf-8");
+      assert.strictEqual(res.headers.etag, '"' + crc(res.data) + '"');
+      assert(res.data);
 
-        assert_cache(url, res.headers.etag, function() {
-          done();
+      await new Promise((resolve, reject) => {
+        assert_cache(url, res.headers.etag, (err) => {
+          if (err) reject(err);
+          else resolve();
         });
       });
     });
 
-    it("should return correct HTTP response for assets", function(done) {
-      var url = "http://localhost:3000/stylesheets/style.css";
-      request.get(url, function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 200);
-        assert_headers(res);
-        assert(res.headers.etag);
-        assert.strictEqual(res.headers["content-type"], "text/css");
-        assert.strictEqual(res.headers.etag, '"' + crc(body) + '"');
-        assert(body);
+    it("should return correct HTTP response for assets", async function() {
+      const url = "http://localhost:3000/stylesheets/style.css";
+      const res = await axios.get(url, { validateStatus: () => true });
+      assert.strictEqual(res.status, 200);
+      assert_headers(res);
+      assert(res.headers.etag);
+      assert.strictEqual(res.headers["content-type"], "text/css");
+      assert.strictEqual(res.headers.etag, '"' + crc(res.data) + '"');
+      assert(res.data);
 
-        assert_cache(url, res.headers.etag, function() {
-          done();
+      await new Promise((resolve, reject) => {
+        assert_cache(url, res.headers.etag, (err) => {
+          if (err) reject(err);
+          else resolve();
         });
       });
     });
 
-    it("should return correct HTTP response for URL encoded URLs", function(done) {
-      var url = "http://localhost:3000/%61%76%61%74%61%72%73/%61%65%37%39%35%61%61%38%36%33%32%37%34%30%38%65%39%32%61%62%32%35%63%38%61%35%39%66%33%62%61%31"; // avatars/ae795aa86327408e92ab25c8a59f3ba1
-      request.get(url, function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 200);
-        assert_headers(res);
-        assert(res.headers.etag);
-        assert.strictEqual(res.headers["content-type"], "image/png");
-        assert(body);
-        done();
-      });
+    it("should return correct HTTP response for URL encoded URLs", async function() {
+      const url = "http://localhost:3000/%61%76%61%74%61%72%73/%61%65%37%39%35%61%61%38%36%33%32%37%34%30%38%65%39%32%61%62%32%35%63%38%61%35%39%66%33%62%61%31"; // avatars/ae795aa86327408e92ab25c8a59f3ba1
+      const res = await axios.get(url, { validateStatus: () => true });
+      assert.strictEqual(res.status, 200);
+      assert_headers(res);
+      assert(res.headers.etag);
+      assert.strictEqual(res.headers["content-type"], "image/png");
+      assert(res.data);
     });
 
-    it("should not fail on simultaneous requests", function(done) {
-      var url = "http://localhost:3000/avatars/696a82ce41f44b51aa31b8709b8686f0";
+    it("should not fail on simultaneous requests", async function() {
+      const url = "http://localhost:3000/avatars/696a82ce41f44b51aa31b8709b8686f0";
       // 10 requests at once
-      var requests = 10;
-      var finished = 0;
-      function partDone() {
-        finished++;
-        if (requests === finished) {
-          done();
-        }
+      const requests = 10;
+      const promises = [];
+      for (let k = 0; k < requests; k++) {
+        promises.push(
+          axios.get(url, { validateStatus: () => true }).then((res) => {
+            assert.strictEqual(res.status, 200);
+            assert_headers(res);
+            assert(res.headers.etag);
+            assert.strictEqual(res.headers["content-type"], "image/png");
+            assert(res.data);
+          })
+        );
       }
-      function req() {
-        request.get(url, function(error, res, body) {
-          assert.ifError(error);
-          assert.strictEqual(res.statusCode, 200);
-          assert_headers(res);
-          assert(res.headers.etag);
-          assert.strictEqual(res.headers["content-type"], "image/png");
-          assert(body);
-          partDone();
-        });
-      }
-      // make simultanous requests
-      for (var k = 0; k < requests; k++) {
-        req(k);
-      }
+      await Promise.all(promises);
   });
 
-    var server_tests = {
+    const server_tests = {
       "avatar with existing uuid": {
         url: "http://localhost:3000/avatars/853c80ef3c3749fdaa49938b674adae6?size=16",
         crc32: [4264176600],
@@ -464,133 +452,130 @@ describe("Crafatar", function() {
       },
     };
 
-    for (var description in server_tests) {
-      var loc = server_tests[description];
+    for (const description in server_tests) {
+      const loc = server_tests[description];
       (function(location) {
-        it("should return correct HTTP response for " + description, function(done) {
-          request.get(location.url, {followRedirect: false, encoding: null}, function(error, res, body) {
-            assert.ifError(error);
-            assert_headers(res);
-            assert(res.headers["x-storage-type"]);
-            var hash = crc(body);
-            var matches = false;
-            for (var c = 0; c < location.crc32.length; c++) {
-              if (location.crc32[c] === hash) {
-                matches = true;
-                break;
-              }
-            }
-            try {
-              assert(matches);
-            } catch(e) {
-              throw new Error(hash + " != " + location.crc32 + " | " + body.toString("base64"));
-            }
-            assert.strictEqual(res.headers.location, location.redirect);
-            if (location.crc32[0] === 0) {
-              assert.strictEqual(res.statusCode, location.redirect ? 307 : 404);
-              assert.ifError(res.headers.etag); // etag must not be present on non-200
-              assert.strictEqual(res.headers["content-type"], "text/plain");
-              done();
-            } else {
-              assert.strictEqual(res.headers["content-type"], "image/png");
-              assert.strictEqual(res.statusCode, 200);
-              assert(res.headers.etag);
-              assert.strictEqual(res.headers.etag, '"' + hash + '"');
-              assert_cache(location.url, res.headers.etag, function() {
-                done();
-              });
-            }
+        it("should return correct HTTP response for " + description, async function() {
+          const res = await axios.get(location.url, {
+            maxRedirects: 0,
+            validateStatus: () => true,
+            responseType: 'arraybuffer'
           });
+          assert_headers(res);
+          assert(res.headers["x-storage-type"]);
+          const body = Buffer.from(res.data);
+          const hash = crc(body);
+          let matches = false;
+          for (let c = 0; c < location.crc32.length; c++) {
+            if (location.crc32[c] === hash) {
+              matches = true;
+              break;
+            }
+          }
+          try {
+            assert(matches);
+          } catch(e) {
+            throw new Error(hash + " != " + location.crc32 + " | " + body.toString("base64"));
+          }
+          assert.strictEqual(res.headers.location, location.redirect);
+          if (location.crc32[0] === 0) {
+            assert.strictEqual(res.status, location.redirect ? 307 : 404);
+            assert.ifError(res.headers.etag); // etag must not be present on non-200
+            assert.strictEqual(res.headers["content-type"], "text/plain");
+          } else {
+            assert.strictEqual(res.headers["content-type"], "image/png");
+            assert.strictEqual(res.status, 200);
+            assert(res.headers.etag);
+            assert.strictEqual(res.headers.etag, '"' + hash + '"');
+            await new Promise((resolve, reject) => {
+              assert_cache(location.url, res.headers.etag, (err) => {
+                if (err) reject(err);
+                else resolve();
+              });
+            });
+          }
         });
       }(loc));
     }
 
-    it("should return 304 on server error", function(done) {
-      var original_debug = config.server.debug_enabled;
-      var original_timeout = config.server.http_timeout;
+    it("should return 304 on server error", async function() {
+      const original_debug = config.server.debug_enabled;
+      const original_timeout = config.server.http_timeout;
       config.server.debug_enabled = false;
       config.server.http_timeout = 1;
-      request.get({url: "http://localhost:3000/avatars/0000000000000000000000000000000f", headers: {"If-None-Match": '"some-etag"'}}, function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(body, '');
-        assert.strictEqual(res.statusCode, 304);
-        config.server.debug_enabled = original_debug;
-        config.server.http_timeout = original_timeout;
-        done();
+      const res = await axios.get("http://localhost:3000/avatars/0000000000000000000000000000000f", {
+        headers: {"If-None-Match": '"some-etag"'},
+        validateStatus: () => true
       });
+      assert.strictEqual(res.data, '');
+      assert.strictEqual(res.status, 304);
+      config.server.debug_enabled = original_debug;
+      config.server.http_timeout = original_timeout;
     });
 
-    it("should return a 422 (invalid size)", function(done) {
-      var size = config.avatars.max_size + 1;
-      request.get("http://localhost:3000/avatars/2d5aa9cdaeb049189930461fc9b91cc5?size=" + size, function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 422);
-        done();
+    it("should return a 422 (invalid size)", async function() {
+      const size = config.avatars.max_size + 1;
+      const res = await axios.get("http://localhost:3000/avatars/2d5aa9cdaeb049189930461fc9b91cc5?size=" + size, {
+        validateStatus: () => true
       });
+      assert.strictEqual(res.status, 422);
     });
 
-    it("should return a 422 (invalid scale)", function(done) {
-      var scale = config.renders.max_scale + 1;
-      request.get("http://localhost:3000/renders/head/2d5aa9cdaeb049189930461fc9b91cc5?scale=" + scale, function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 422);
-        done();
+    it("should return a 422 (invalid scale)", async function() {
+      const scale = config.renders.max_scale + 1;
+      const res = await axios.get("http://localhost:3000/renders/head/2d5aa9cdaeb049189930461fc9b91cc5?scale=" + scale, {
+        validateStatus: () => true
       });
+      assert.strictEqual(res.status, 422);
     });
 
-    it("should return a 422 (invalid render type)", function(done) {
-      request.get("http://localhost:3000/renders/invalid/2d5aa9cdaeb049189930461fc9b91cc5", function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 422);
-        done();
+    it("should return a 422 (invalid render type)", async function() {
+      const res = await axios.get("http://localhost:3000/renders/invalid/2d5aa9cdaeb049189930461fc9b91cc5", {
+        validateStatus: () => true
       });
+      assert.strictEqual(res.status, 422);
     });
 
     // testing all paths for Invalid UUID
-    var locations = ["avatars", "skins", "capes", "renders/body", "renders/head"];
-    for (var l in locations) {
-      loc = locations[l];
-      (function(location) {
-        it("should return a 422 (invalid uuid " + location + ")", function(done) {
-          request.get("http://localhost:3000/" + location + "/thisisaninvaliduuid", function(error, res, body) {
-            assert.ifError(error);
-            assert.strictEqual(res.statusCode, 422);
-            done();
+    const locations = ["avatars", "skins", "capes", "renders/body", "renders/head"];
+    for (const l in locations) {
+      const location = locations[l];
+      (function(locationPath) {
+        it("should return a 422 (invalid uuid " + locationPath + ")", async function() {
+          const res = await axios.get("http://localhost:3000/" + locationPath + "/thisisaninvaliduuid", {
+            validateStatus: () => true
           });
+          assert.strictEqual(res.status, 422);
         });
 
-        it("should return a 404 (invalid path " + location + ")", function(done) {
-          request.get("http://localhost:3000/" + location + "/853c80ef3c3749fdaa49938b674adae6/invalid", function(error, res, body) {
-            assert.ifError(error);
-            assert.strictEqual(res.statusCode, 404);
-            done();
+        it("should return a 404 (invalid path " + locationPath + ")", async function() {
+          const res = await axios.get("http://localhost:3000/" + locationPath + "/853c80ef3c3749fdaa49938b674adae6/invalid", {
+            validateStatus: () => true
           });
+          assert.strictEqual(res.status, 404);
         });
-      }(loc));
+      }(locationPath));
     }
 
-    it("should return /public resources", function(done) {
-      request.get("http://localhost:3000/javascript/crafatar.js", function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 200);
-        done();
+    it("should return /public resources", async function() {
+      const res = await axios.get("http://localhost:3000/javascript/crafatar.js", {
+        validateStatus: () => true
       });
+      assert.strictEqual(res.status, 200);
     });
 
-    it("should not allow path traversal on /public", function(done) {
-      request.get("http://localhost:3000/../server.js", function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 404);
-        done();
+    it("should not allow path traversal on /public", async function() {
+      const res = await axios.get("http://localhost:3000/../server.js", {
+        validateStatus: () => true
       });
+      assert.strictEqual(res.status, 404);
     });
 
-    it("should not allow encoded path traversal on /public", function(done) {
-      request.get("http://localhost:3000/%2E%2E/server.js", function(error, res, body) {
-        assert.ifError(error);
-        assert.strictEqual(res.statusCode, 404);
-        done();
+    it("should not allow encoded path traversal on /public", async function() {
+      const res = await axios.get("http://localhost:3000/%2E%2E/server.js", {
+        validateStatus: () => true
       });
+      assert.strictEqual(res.status, 404);
     });
   });
 
@@ -618,8 +603,8 @@ describe("Crafatar", function() {
       });
     });
     it("should already exist", function(done) {
-      before(function() {
-        cache.get_redis().flushall();
+      before(async function() {
+        await cache.get_redis().flushAll();
       });
       helpers.get_cape(rid(), "61699b2ed3274a019f1e0ea8c3f06bc6", function(err, hash, status, img) {
         assert.strictEqual(err, null);
@@ -643,8 +628,8 @@ describe("Crafatar", function() {
       });
     });
     it("should already exist", function(done) {
-      before(function() {
-        cache.get_redis().flushall();
+      before(async function() {
+        await cache.get_redis().flushAll();
       });
       helpers.get_cape(rid(), "2d5aa9cdaeb049189930461fc9b91cc5", function(err, hash, status, img) {
         assert.strictEqual(err, null);
@@ -656,8 +641,8 @@ describe("Crafatar", function() {
 
 
   describe("Networking: Avatar", function() {
-    before(function() {
-      cache.get_redis().flushall();
+    before(async function() {
+      await cache.get_redis().flushAll();
     });
     it("should be downloaded", function(done) {
       helpers.get_avatar(rid(), uuid, false, 160, function(err, status, image) {
@@ -710,8 +695,8 @@ describe("Crafatar", function() {
 
 
   describe("Errors", function() {
-    before(function() {
-      cache.get_redis().flushall();
+    before(async function() {
+      await cache.get_redis().flushAll();
     });
 
     // Mojang has changed its rate limiting, so we no longer expect to hit the rate limit
@@ -726,7 +711,7 @@ describe("Crafatar", function() {
     // });
 
     it("CloudFront rate limit is handled", function(done) {
-      var original_rate_limit = config.server.sessions_rate_limit;
+      const original_rate_limit = config.server.sessions_rate_limit;
       config.server.sessions_rate_limit = 1;
       networking.get_profile(rid(), uuid, function() {
         networking.get_profile(rid(), uuid, function(err, profile) {
@@ -739,9 +724,18 @@ describe("Crafatar", function() {
   });
 
   after(function(done) {
-    server.close(function() {
-      cache.get_redis().quit();
-      done();
+    server.close(function(err) {
+      if (err) {
+        return done(err);
+      }
+      (async () => {
+        try {
+          await cache.get_redis().quit();
+          done();
+        } catch (e) {
+          done(e);
+        }
+      })();
     });
   });
 });
