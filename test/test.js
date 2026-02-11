@@ -1,4 +1,3 @@
-/* globals describe, it, before, after */
 /* eslint no-loop-func:0 guard-for-in:0 */
 
 // no spam
@@ -59,9 +58,6 @@ function getRandomInt(min, max) {
 }
 
 describe("Crafatar", function () {
-  // we might have to make 2 HTTP requests
-  this.timeout(config.server.http_timeout * 2 + 50);
-
   before(async function () {
     console.log("Flushing and waiting for redis ...");
     await cache.get_redis().flushAll();
