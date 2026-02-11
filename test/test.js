@@ -1,4 +1,5 @@
 /* eslint no-loop-func:0 guard-for-in:0 */
+import { describe, it, before, after } from "vitest";
 
 // no spam
 import logging from "../lib/logging.js";
