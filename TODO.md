@@ -3,6 +3,7 @@
 ## 🎨 Frontend / Website Redesign
 
 ### Complete Website Redesign
+
 - [ ] Modernize the UI/UX with a fresh, contemporary design
 - [ ] Improve mobile responsiveness and accessibility (WCAG 2.1 AA compliance)
 - [ ] Add dark mode / light mode theme toggle
@@ -13,6 +14,7 @@
 - [ ] Implement better error messages and status indicators
 
 ### Modern Frontend Stack
+
 - [ ] Migrate to **TypeScript** for type safety and better developer experience
 - [ ] Adopt **Vite** as the build tool for faster development and optimized builds
 - [ ] Consider modern frontend frameworks:
@@ -29,12 +31,14 @@
 ## 🚀 Backend Modernization
 
 ### TypeScript Migration
+
 - [ ] Convert entire backend codebase from JavaScript to **TypeScript**
 - [ ] Add proper type definitions for all modules
 - [ ] Implement strict type checking
 - [ ] Add JSDoc comments for better documentation
 
 ### Backend Framework Options
+
 - [ ] **Option 1: Express with TypeScript**
   - Keep Express.js but migrate to TypeScript
   - Add proper middleware typing
@@ -55,6 +59,7 @@
   - TypeScript-first design
 
 ### API Improvements
+
 - [ ] Implement **OpenAPI/Swagger** specification for better API documentation
 - [ ] Add API versioning (e.g., `/v2/avatars/...`)
 - [ ] Implement rate limiting per IP/API key
@@ -66,6 +71,7 @@
 ## 💾 Caching & Database Alternatives
 
 ### Redis Alternatives
+
 - [ ] **Memcached** - Simple, lightweight in-memory caching
 - [ ] **KeyDB** - Drop-in Redis replacement with better performance (multithreading)
 - [ ] **DragonflyDB** - Modern Redis alternative with better memory efficiency
@@ -74,6 +80,7 @@
 - [ ] Consider hybrid approach with multiple caching layers
 
 ### Storage Improvements
+
 - [ ] Add support for cloud storage (S3, Cloudflare R2, Google Cloud Storage)
 - [ ] Implement CDN integration for better global performance
 - [ ] Add image compression/optimization pipeline
@@ -83,6 +90,7 @@
 ## 🧪 Testing & Quality
 
 ### Testing Improvements
+
 - [ ] Increase test coverage (currently using Vitest)
 - [ ] Add integration tests for all API endpoints
 - [ ] Implement visual regression testing for rendered images
@@ -91,6 +99,7 @@
 - [ ] Add E2E tests with Playwright or Cypress
 
 ### Code Quality
+
 - [ ] Setup SonarQube or similar for code quality metrics
 - [ ] Implement pre-commit hooks with Husky
 - [ ] Add commit message linting (commitlint)
@@ -110,6 +119,7 @@
 ## 🐳 DevOps & Infrastructure
 
 ### Docker & Deployment
+
 - [ ] Multi-stage Docker builds to reduce image size
 - [ ] Add Docker health checks
 - [ ] Support for Kubernetes deployment (add Helm charts)
@@ -117,6 +127,7 @@
 - [ ] Consider alternative container runtimes (Podman)
 
 ### CI/CD Improvements
+
 - [ ] Add automated deployment pipeline
 - [ ] Implement canary deployments
 - [ ] Add performance regression testing in CI
@@ -125,6 +136,7 @@
 - [ ] Implement semantic versioning automation
 
 ### Monitoring & Observability
+
 - [ ] Add structured logging (winston, pino)
 - [ ] Implement OpenTelemetry for distributed tracing
 - [ ] Add Prometheus metrics endpoint
@@ -174,6 +186,7 @@
 ## 🎯 Priority Recommendations
 
 ### High Priority (Quick Wins)
+
 1. Create .env.example file ✅
 2. Add OpenAPI/Swagger documentation
 3. Implement better error handling
@@ -181,6 +194,7 @@
 5. Improve website mobile responsiveness
 
 ### Medium Priority (Significant Impact)
+
 1. Migrate to TypeScript
 2. Modernize frontend with Vite + React/Vue
 3. Add Redis alternatives support
@@ -188,6 +202,7 @@
 5. Add comprehensive monitoring
 
 ### Low Priority (Long-term)
+
 1. Full website redesign
 2. GraphQL API
 3. WebSocket support
