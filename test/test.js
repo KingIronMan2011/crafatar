@@ -18,6 +18,9 @@ import cache from "../lib/cache.js";
 import { crc32 as crc } from "crc";
 import fs from "fs";
 
+const _ORIGINAL_NODE_ENV = process.env.NODE_ENV;
+process.env.NODE_ENV = "test";
+
 // we don't want tests to fail because of slow internet
 config.server.http_timeout *= 3;
 
@@ -888,5 +891,6 @@ describe("Crafatar", function () {
       });
     });
     await cache.get_redis().quit();
+    process.env.NODE_ENV = _ORIGINAL_NODE_ENV;
   });
 });
