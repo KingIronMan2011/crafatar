@@ -26,8 +26,7 @@
     "crc": "^4.3.2",
     "mime": "^4.1.0",
     "redis": "^5.10.0",
-    "sharp": "^0.34.5",
-    "toobusy-js": "^0.5.1"
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
