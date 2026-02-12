@@ -44,6 +44,6 @@ COPY --chown=app package.json www.js config.js ./
 COPY --chown=app lib/ lib/
 
 VOLUME /home/app/crafatar/images
-ENV NODE_ENV production
+ENV NODE_ENV=production
 ENTRYPOINT ["npm", "start"]
 EXPOSE 3000

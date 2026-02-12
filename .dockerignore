@@ -1,4 +1,6 @@
-.*
+.env.example
+.env
+.markdownlint.json
 *.md
 Dockerfile
 LICENSE

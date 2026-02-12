@@ -12,7 +12,10 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "docker:build": "docker build -f docker/Dockerfile -t crafatar .",
+    "docker:up": "docker compose up -d -f docker/docker-compose.yml",
+    "docker:down": "docker compose down -f docker/docker-compose.yml"
   },
   "engines": {
     "node": ">=20.0.0"
